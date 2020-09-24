@@ -9,7 +9,7 @@ const theme: DefaultTheme = {
     black: '#000000',
     white: '#FFFFFF',
   },
-  fonts: {
+  sizes: {
     XXL: '48px',
     XL: '36px',
     L: '24px',
@@ -21,6 +21,7 @@ const theme: DefaultTheme = {
     regular: '400',
     light: '300',
   },
+  font: 'Montserrat, sans-serif',
 };
 
 export default theme;

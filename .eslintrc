@@ -12,6 +12,7 @@
     "window": true
   },
   "rules": {
-    "@typescript-eslint/no-unnecessary-type-assertion": 2
+    "@typescript-eslint/no-unnecessary-type-assertion": 2,
+    "react/prop-types": 0
   }
 }

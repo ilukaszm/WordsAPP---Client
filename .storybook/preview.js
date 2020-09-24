@@ -4,15 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import theme from 'theme/theme';
 import GlobalStyles from 'theme/GlobalStyles';
 
-function App() {
+const withThemeProvider = (Story, context) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <div className="App">
-        <h1>test</h1>
-      </div>
+      <Story {...context} />
     </ThemeProvider>
   );
-}
-
-export default App;
+};
+export const decorators = [withThemeProvider];

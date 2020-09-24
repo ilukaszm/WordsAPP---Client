@@ -10,7 +10,7 @@ declare module 'styled-components' {
       black: string;
       white: string;
     };
-    fonts: {
+    sizes: {
       XXL: string;
       XL: string;
       L: string;
@@ -22,5 +22,6 @@ declare module 'styled-components' {
       regular: string;
       light: string;
     };
+    font: string;
   }
 }
