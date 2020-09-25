@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 
 import StyledButton from './Button.styled';
 
-interface Props {
+interface ButtonProps {
   className?: string;
   small?: boolean;
 }
 
-const Button: FC<Props> = ({ className, children, small }) => (
+const Button: FC<ButtonProps> = ({ className, children, small }) => (
   <StyledButton className={className} small={small}>
     {children}
   </StyledButton>
