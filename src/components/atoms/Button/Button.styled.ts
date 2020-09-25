@@ -11,6 +11,7 @@ const StyledButton = styled.button<{ small?: boolean }>`
   font-weight: ${({ theme }) => theme.bolds.regular};
   font-size: ${({ theme }) => theme.sizes.M};
   color: ${({ theme }) => theme.colors.white};
+  transition: all 0.3s;
 
   :hover {
     background-color: ${({ theme }) => theme.colors.secondaryRed};
