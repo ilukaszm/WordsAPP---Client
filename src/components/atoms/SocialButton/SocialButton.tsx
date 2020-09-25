@@ -8,7 +8,7 @@ interface SocialButtonProps {
   variant?: string;
 }
 
-const SocialButton: React.FC<SocialButtonProps> = ({ className, variant }) => {
+const SocialButton: FC<SocialButtonProps> = ({ className, variant }) => {
   return (
     <StyledSocialButton className={className} data-testid="social-button">
       {variant === 'facebook' && <FacebookIcon />}
