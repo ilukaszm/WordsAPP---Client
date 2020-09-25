@@ -5,7 +5,9 @@ import { render } from '@testing-library/react';
 import theme from 'theme/theme';
 import SocialButton from './SocialButton';
 
-const renderSocialButton = (variant?: string) => {
+type Variants = 'facebook' | 'google';
+
+const renderSocialButton = (variant?: Variants) => {
   const utils = render(
     <ThemeProvider theme={theme}>
       <SocialButton variant={variant} />
@@ -17,35 +19,21 @@ const renderSocialButton = (variant?: string) => {
 };
 
 describe('SocialButton component', () => {
-  test('is rendered with default button', () => {
+  test('is rendered with default icon', () => {
     const { socialButton } = renderSocialButton();
 
-    expect(socialButton).toBeInTheDocument();
+    expect(socialButton.querySelector('svg')).toBeInTheDocument();
   });
 
-  test('is rendered with icons', () => {
-    const { socialButton, rerender } = renderSocialButton('facebook');
-
-    expect(socialButton).toBeInTheDocument();
-
-    rerender(
-      <ThemeProvider theme={theme}>
-        <SocialButton variant="google" />
-      </ThemeProvider>,
-    );
-    expect(socialButton).toBeInTheDocument();
-  });
-
-  test('is rendered with svg', () => {
-    const { socialButton, rerender } = renderSocialButton('facebook');
+  test('is rendered with facebook.svg', () => {
+    const { socialButton } = renderSocialButton('facebook');
 
     expect(socialButton.querySelector('svg')).toBeInTheDocument();
+  });
 
-    rerender(
-      <ThemeProvider theme={theme}>
-        <SocialButton variant="google" />
-      </ThemeProvider>,
-    );
+  test('is rendered with google.svg', () => {
+    const { socialButton } = renderSocialButton('google');
+
     expect(socialButton.querySelector('svg')).toBeInTheDocument();
   });
 });

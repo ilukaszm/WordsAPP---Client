@@ -5,7 +5,7 @@ import StyledSocialButton from './SocialButton.styled';
 
 interface SocialButtonProps {
   className?: string;
-  variant?: string;
+  variant?: 'facebook' | 'google';
 }
 
 const SocialButton: FC<SocialButtonProps> = ({ className, variant }) => {
