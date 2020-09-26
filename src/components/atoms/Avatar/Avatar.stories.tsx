@@ -4,7 +4,7 @@ import avatarPerson from 'assets/icons/avatarPerson.svg';
 import Avatar from './Avatar';
 
 export default {
-  title: 'Components/Atoms/Avatar',
+  title: 'Atoms/Avatar',
   component: Avatar,
 } as Meta;
 
