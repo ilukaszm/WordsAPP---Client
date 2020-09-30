@@ -1,7 +1,12 @@
 import React, { FC } from 'react';
 
-import { NavBar } from 'components';
-import { StyledWrapper, StyledLogo, StyledHeading } from './UserPageTemplate.styled';
+import {
+  StyledWrapper,
+  InnerWrapper,
+  StyledLogo,
+  StyledHeading,
+  StyledNavBar,
+} from './UserPageTemplate.styled';
 
 interface UserPageTemplateProps {
   viewType: 'wordsList' | 'addWord' | 'game';
@@ -11,13 +16,15 @@ const UserPageTemplate: FC<UserPageTemplateProps> = ({ children, viewType }) => 
   return (
     <StyledWrapper>
       <StyledLogo variant="small" />
-      <NavBar />
-      <StyledHeading>
-        {viewType === 'wordsList' && 'Your words'}
-        {viewType === 'addWord' && 'Add Word'}
-        {viewType === 'game' && 'Game'}
-      </StyledHeading>
-      {children}
+      <StyledNavBar />
+      <InnerWrapper>
+        <StyledHeading>
+          {viewType === 'wordsList' && 'Your words'}
+          {viewType === 'addWord' && 'Add Word'}
+          {viewType === 'game' && 'Game'}
+        </StyledHeading>
+        {children}
+      </InnerWrapper>
     </StyledWrapper>
   );
 };

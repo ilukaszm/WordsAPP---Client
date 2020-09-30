@@ -46,9 +46,16 @@ export const StyledNavBar = styled.nav`
 
 export const NavBarItem = styled.a`
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 5px;
   display: block;
   text-decoration: none;
+  transition: all 0.3s;
+
+  &.active {
+    svg {
+      opacity: 0.3;
+    }
+  }
 
   svg {
     transition: all 0.3s;
