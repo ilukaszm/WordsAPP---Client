@@ -22,6 +22,10 @@ const StyledButton = styled.button`
   :hover {
     background-color: ${({ theme }) => theme.colors.secondaryRed};
   }
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export default StyledButton;

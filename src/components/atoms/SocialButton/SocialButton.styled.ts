@@ -13,6 +13,11 @@ const StyledSocialButton = styled.button`
   :hover {
     transform: scale(1.1);
   }
+
+  :focus {
+    outline: none;
+  }
+
   ${({ theme: { devices } }) => devices.tablet} {
     width: 51px;
     height: 51px;

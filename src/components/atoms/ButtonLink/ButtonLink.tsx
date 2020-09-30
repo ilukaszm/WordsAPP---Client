@@ -1,13 +1,24 @@
 import React, { FC } from 'react';
 
-import StyledButtonLink from './ButtonLink.styled';
+import { StyledButtonLink, StyledButton } from './ButtonLink.styled';
 
 interface ButtonLinkProps {
   className?: string;
+  onClick?: () => void;
 }
 
-const ButtonLink: FC<ButtonLinkProps> = ({ className, children }) => {
-  return <StyledButtonLink className={className}>{children}</StyledButtonLink>;
+const ButtonLink: FC<ButtonLinkProps> = ({ className, children, onClick }) => {
+  return (
+    <>
+      {onClick ? (
+        <StyledButton onClick={onClick} className={className}>
+          {children}
+        </StyledButton>
+      ) : (
+        <StyledButtonLink className={className}>{children}</StyledButtonLink>
+      )}
+    </>
+  );
 };
 
 export default ButtonLink;
