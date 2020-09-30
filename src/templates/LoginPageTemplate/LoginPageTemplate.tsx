@@ -24,6 +24,7 @@ const LoginPageTemplate: FC<LoginPageTemplateProps> = ({ viewType, handlerFn }) 
         <StyledLogoSmall variant="small" />
         <Paragraph>
           {viewType === 'register' ? 'You have an account?' : "You don't have an account?"}
+          &nbsp;
           <ButtonLink onClick={handlerFn}>
             {viewType === 'register' ? 'Sign In' : 'Sign Up'}
           </ButtonLink>
