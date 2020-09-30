@@ -4,7 +4,9 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from 'theme/theme';
 import GlobalStyles from 'theme/GlobalStyles';
-import { LoginPage } from 'views';
+import { LoginPage, HomePage } from 'views';
+import routes from 'routes';
+import UserPage from './UserPage';
 
 const Root = () => {
   return (
@@ -12,8 +14,11 @@ const Root = () => {
       <GlobalStyles />
       <Router>
         <Switch>
-          <Route exact path="/" component={() => <h1>wordsAPP</h1>} />
-          <Route path="/login" component={LoginPage} />
+          <Route exact path={routes.home} component={HomePage} />
+          <Route path={routes.login} component={LoginPage} />
+          <Route path={routes.wordsList} component={UserPage} />
+          <Route path={routes.addWord} component={UserPage} />
+          <Route path={routes.game} component={UserPage} />
         </Switch>
       </Router>
     </ThemeProvider>
