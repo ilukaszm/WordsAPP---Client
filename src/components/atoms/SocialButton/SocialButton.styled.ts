@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const StyledSocialButton = styled.button`
   cursor: pointer;
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 31px;
+  height: 31px;
   border: none;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.darkBlue};
@@ -13,9 +13,15 @@ const StyledSocialButton = styled.button`
   :hover {
     transform: scale(1.1);
   }
+  ${({ theme: { devices } }) => devices.tablet} {
+    width: 51px;
+    height: 51px;
+  }
 
   svg {
     position: absolute;
+    width: 70%;
+    height: 70%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

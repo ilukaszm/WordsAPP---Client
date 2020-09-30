@@ -13,7 +13,7 @@ const theme: DefaultTheme = {
     XXL: '48px',
     XL: '36px',
     L: '24px',
-    M: '18px',
+    M: '16px',
     S: '14px',
   },
   bolds: {

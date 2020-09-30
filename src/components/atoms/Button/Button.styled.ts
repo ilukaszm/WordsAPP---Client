@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button<{ small?: boolean }>`
+const StyledButton = styled.button`
   cursor: pointer;
-  width: ${({ small }) => (small ? '157px' : '240px')};
-  height: ${({ small }) => (small ? '40px' : '60px')};
+  display: block;
+  width: 157px;
+  height: 40px;
   border: none;
   border-radius: 50px;
   background-color: ${({ theme }) => theme.colors.primaryRed};
@@ -12,6 +13,11 @@ const StyledButton = styled.button<{ small?: boolean }>`
   font-size: ${({ theme }) => theme.sizes.M};
   color: ${({ theme }) => theme.colors.white};
   transition: all 0.3s;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    width: 240px;
+    height: 60px;
+  }
 
   :hover {
     background-color: ${({ theme }) => theme.colors.secondaryRed};

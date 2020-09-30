@@ -9,4 +9,3 @@ export default {
 } as Meta;
 
 export const Primary: FC = () => <Button>Primary button</Button>;
-export const Small: FC = () => <Button small>Small button</Button>;

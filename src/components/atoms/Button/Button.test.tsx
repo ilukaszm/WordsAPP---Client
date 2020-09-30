@@ -16,15 +16,4 @@ describe('Button component', () => {
 
     expect(button).toBeInTheDocument();
   });
-
-  test('is rendered as small type', () => {
-    const { getByText } = render(
-      <ThemeProvider theme={theme}>
-        <Button small>Example</Button>
-      </ThemeProvider>,
-    );
-    const button = getByText(/example/i);
-
-    expect(button).toBeInTheDocument();
-  });
 });

@@ -5,16 +5,24 @@ import LogoBigImage from 'assets/images/logoBig.svg';
 import { StyledLogoSmall, StyledLogoBig } from './Logo.styled';
 
 interface LogoProps {
+  className?: string;
   variant?: 'small' | 'big';
 }
 
-const Logo: FC<LogoProps> = ({ variant }) => {
+const Logo: FC<LogoProps> = ({ className, variant }) => {
   return (
     <>
       {variant === 'small' && (
-        <StyledLogoSmall src={LogoSmallImage} alt="logo" data-testid="logo-small" />
+        <StyledLogoSmall
+          className={className}
+          src={LogoSmallImage}
+          alt="logo"
+          data-testid="logo-small"
+        />
       )}
-      {variant === 'big' && <StyledLogoBig src={LogoBigImage} alt="logo" data-testid="logo-big" />}
+      {variant === 'big' && (
+        <StyledLogoBig className={className} src={LogoBigImage} alt="logo" data-testid="logo-big" />
+      )}
     </>
   );
 };

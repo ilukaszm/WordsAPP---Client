@@ -4,13 +4,10 @@ import StyledButton from './Button.styled';
 
 interface ButtonProps {
   className?: string;
-  small?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ className, children, small }) => (
-  <StyledButton className={className} small={small}>
-    {children}
-  </StyledButton>
+const Button: FC<ButtonProps> = ({ className, children }) => (
+  <StyledButton className={className}>{children}</StyledButton>
 );
 
 export default Button;
