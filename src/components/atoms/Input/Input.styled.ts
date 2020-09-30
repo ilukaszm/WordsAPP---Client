@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import watchIcon from 'assets/icons/watch.svg';
 
 const StyledInput = styled.div<{
-  error?: string;
+  error?: boolean;
   type?: string;
 }>`
   width: 100%;

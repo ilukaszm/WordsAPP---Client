@@ -15,7 +15,7 @@ const renderInput = (
 ) => {
   const utils = render(
     <ThemeProvider theme={theme}>
-      <Input type={type} label={label} name={name} id={id} error={error} />
+      <Input type={type} label={label} name={name} id={id} errors={{ message: error }} />
     </ThemeProvider>,
   );
   const input = utils.getByLabelText(/example/i);

@@ -19,6 +19,6 @@ export const Error: FC = () => (
     label="password"
     name="example-error"
     id="example-error"
-    error="Wrong password!"
+    errors={{ message: 'wrong password!' }}
   />
 );
