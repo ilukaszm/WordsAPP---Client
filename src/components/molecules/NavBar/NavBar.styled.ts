@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledNavBar = styled.nav`
+  position: sticky;
+  top: 0;
   padding: 30px 0;
   width: 100%;
   height: 50px;
@@ -25,7 +27,7 @@ export const StyledNavBar = styled.nav`
   }
 
   ${({ theme: { devices } }) => devices.tabletL} {
-    width: 145px;
+    width: 110px;
     height: 100vh;
     flex-direction: column;
     justify-content: space-around;

@@ -10,12 +10,12 @@ export const StyledWrapper = styled.div`
 export const InnerWrapper = styled.div`
   padding: 20px;
   ${({ theme: { devices } }) => devices.tabletL} {
-    margin-left: 145px;
+    margin-left: 110px;
   }
 `;
 
 export const StyledLogo = styled(Logo)`
-  margin: 20px 0;
+  margin: 30px 0 50px;
 
   ${({ theme: { devices } }) => devices.tabletL} {
     margin: 0;
@@ -33,6 +33,6 @@ export const StyledNavBar = styled(NavBar)`
 `;
 
 export const StyledHeading = styled(Heading)`
-  padding: 10px;
+  padding: 10px 0 20px 0px;
   font-weight: ${({ theme }) => theme.bolds.light};
 `;

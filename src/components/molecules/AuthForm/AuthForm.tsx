@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers';
 
 import { Input, Button } from 'components';
 import * as schema from 'utils/validationSchemas';
-import { authUser } from 'data/slices/auth';
+import { authUser } from 'data/slices/authSlice';
 import { StyledForm } from './AuthForm.styled';
 
 interface AuthFormProps {

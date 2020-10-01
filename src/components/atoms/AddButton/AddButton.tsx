@@ -5,11 +5,12 @@ import StyledAddButton from './AddButton.styled';
 
 interface AddButtonProps {
   className?: string;
+  onClick?: () => void;
 }
 
-const AddButton: FC<AddButtonProps> = ({ className }) => {
+const AddButton: FC<AddButtonProps> = ({ className, onClick }) => {
   return (
-    <StyledAddButton className={className} data-testid="add-button">
+    <StyledAddButton className={className} onClick={onClick} data-testid="add-button">
       <PlusIcon />
     </StyledAddButton>
   );

@@ -1,17 +1,31 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, ChangeEvent } from 'react';
 import { ValidationRules, UseFormMethods } from 'react-hook-form';
 
 import StyledInput from './Input.styled';
 
 export interface InputProps extends Partial<Pick<UseFormMethods, 'register' | 'errors'>> {
+  className?: string;
   rules?: ValidationRules;
   type: string;
   id?: string;
   name?: string;
   label: string;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FC<InputProps> = ({ type, label, id, name, errors, rules = {}, register }) => {
+const Input: FC<InputProps> = ({
+  className,
+  type,
+  label,
+  id,
+  name,
+  errors,
+  rules = {},
+  register,
+  value,
+  onChange,
+}) => {
   const [inputType, setInputType] = useState(type);
 
   const handleButtonClick = () => {
@@ -22,13 +36,15 @@ const Input: FC<InputProps> = ({ type, label, id, name, errors, rules = {}, regi
   };
 
   return (
-    <StyledInput error={!!errors} type={type} data-testid="input">
+    <StyledInput className={className} error={!!errors} type={type} data-testid="input">
       <input
         type={inputType}
         name={name}
         id={id}
         placeholder=" "
         ref={register && register(rules)}
+        value={value}
+        onChange={onChange}
       />
       <label htmlFor={id}>{label}</label>
       {type === 'password' && (
