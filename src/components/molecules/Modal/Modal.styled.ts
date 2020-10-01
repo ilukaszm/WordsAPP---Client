@@ -18,7 +18,7 @@ export const StyledShadow = styled.div<{ visibility: boolean }>`
 `;
 
 export const StyledWrapper = styled.div<{ visibility: boolean }>`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -28,6 +28,7 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   display: ${({ visibility }) => (visibility ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.colors.white};
   transition: all ease-in 0.6s;
   ${({ theme: { devices } }) => devices.tablet} {
@@ -37,7 +38,7 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   ${({ theme: { devices } }) => devices.tabletL} {
     width: 50vw;
     height: 60vh;
-    border: 1px solid ${({ theme }) => theme.colors.black};
+    border: 2px solid ${({ theme }) => theme.colors.black};
   }
 `;
 

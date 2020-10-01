@@ -9,6 +9,7 @@ export const StyledWrapper = styled.div`
 
 export const InnerWrapper = styled.div`
   padding: 20px;
+  z-index: 8888;
   ${({ theme: { devices } }) => devices.tabletL} {
     margin-left: 110px;
   }
