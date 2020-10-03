@@ -11,6 +11,7 @@ export interface InputProps extends Partial<Pick<UseFormMethods, 'register' | 'e
   name?: string;
   label: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -24,6 +25,7 @@ const Input: FC<InputProps> = ({
   rules = {},
   register,
   value,
+  defaultValue,
   onChange,
 }) => {
   const [inputType, setInputType] = useState(type);
@@ -36,7 +38,13 @@ const Input: FC<InputProps> = ({
   };
 
   return (
-    <StyledInput className={className} error={!!errors} type={type} data-testid="input">
+    <StyledInput
+      className={className}
+      error={!!errors}
+      type={type}
+      data-testid="input"
+      key={defaultValue}
+    >
       <input
         type={inputType}
         name={name}
@@ -44,6 +52,7 @@ const Input: FC<InputProps> = ({
         placeholder=" "
         ref={register && register(rules)}
         value={value}
+        defaultValue={defaultValue || ''}
         onChange={onChange}
       />
       <label htmlFor={id}>{label}</label>

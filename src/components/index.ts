@@ -11,5 +11,7 @@ export { default as Logo } from './atoms/Logo';
 
 export { default as NavBar } from './molecules/NavBar';
 export { default as AuthForm } from './molecules/AuthForm';
-export { default as WordItem } from './molecules/WordItem';
+export { default as Word } from './molecules/Word';
 export { default as Modal } from './molecules/Modal';
+
+export { default as Words } from './organisms/Words';

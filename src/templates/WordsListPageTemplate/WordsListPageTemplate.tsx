@@ -1,6 +1,5 @@
 import React, { FC, ChangeEvent } from 'react';
 
-import { Modal } from 'components';
 import {
   StyledInput,
   ColumnsTitle,
@@ -10,16 +9,14 @@ import {
 
 interface WordsListPageTemplateProps {
   searchValue: string;
-  modalVisibility: boolean;
+  toggleAddWord: () => void;
   handleChangeFn: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleModal: () => void;
 }
 
 const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
   searchValue,
-  modalVisibility,
   handleChangeFn,
-  handleModal,
+  toggleAddWord,
   children,
 }) => {
   return (
@@ -29,9 +26,8 @@ const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
         <StyledParagraph>word:</StyledParagraph>
         <StyledParagraph>translation:</StyledParagraph>
       </ColumnsTitle>
-      <StyledAddButton onClick={handleModal} />
-      <div>{children}</div>
-      <Modal visibility={modalVisibility} handleModalFn={handleModal} />
+      {children}
+      <StyledAddButton onClick={toggleAddWord} />
     </div>
   );
 };

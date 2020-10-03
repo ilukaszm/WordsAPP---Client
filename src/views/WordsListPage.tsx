@@ -1,13 +1,14 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, useState, ChangeEvent, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { WordsListPageTemplate } from 'templates';
-import { WordItem } from 'components';
+import { Words, Modal } from 'components';
 import { selectWords } from 'data/slices/wordsSlice';
 
 const WordsListPage: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isModalVisible, setModalVisibility] = useState(false);
+  const [editedValueId, setEditedValueId] = useState<string | null>(null);
 
   const words = useSelector(selectWords);
 
@@ -15,7 +16,7 @@ const WordsListPage: FC = () => {
     setSearchValue(e.target.value);
   };
 
-  const handleModal = () => {
+  const toggleModal = () => {
     if (isModalVisible === false) {
       setModalVisibility(true);
     } else {
@@ -23,21 +24,33 @@ const WordsListPage: FC = () => {
     }
   };
 
+  const toggleEditingWord = (id: string) => {
+    setEditedValueId(id);
+    toggleModal();
+  };
+
+  const toggleAddWord = () => {
+    if (editedValueId) {
+      setEditedValueId(null);
+    }
+    toggleModal();
+  };
+
+  const editedWord = useMemo(() => {
+    if (editedValueId) {
+      return words.find((word) => word.id === editedValueId);
+    }
+    return null;
+  }, [editedValueId, words]);
+
   return (
     <WordsListPageTemplate
       searchValue={searchValue}
       handleChangeFn={handleChange}
-      modalVisibility={isModalVisible}
-      handleModal={handleModal}
+      toggleAddWord={toggleAddWord}
     >
-      {words
-        .filter(
-          ({ word, translation }) =>
-            word.includes(searchValue) || translation.includes(searchValue),
-        )
-        .map(({ id, word, translation }) => {
-          return <WordItem key={id} word={word} translation={translation} />;
-        })}
+      <Words searchValue={searchValue} toggleEditingWord={toggleEditingWord} />
+      <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
     </WordsListPageTemplate>
   );
 };

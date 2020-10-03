@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 
 import * as schema from 'utils/validationSchemas';
-import { addWord } from 'data/slices/wordsSlice';
+import { addWord, editWord } from 'data/slices/wordsSlice';
 import { Input, Button } from 'components';
 import {
   StyledWrapper,
@@ -19,28 +19,47 @@ interface Inputs {
   translation: string;
 }
 
-interface ModalProps {
-  visibility: boolean;
-  handleModalFn: () => void;
+interface EditedWord {
+  id: string;
+  word: string;
+  translation: string;
+  toRepeat: boolean;
 }
 
-const Modal: FC<ModalProps> = ({ visibility, handleModalFn }) => {
+interface ModalProps {
+  visibility: boolean;
+  toggleModal: () => void;
+  editedWord?: EditedWord | null;
+  closeEditingWord?: () => void;
+}
+
+const Modal: FC<ModalProps> = ({ visibility, toggleModal, editedWord }) => {
   const dispatch = useDispatch();
 
-  const { handleSubmit, register, errors } = useForm<Inputs>({
+  const { handleSubmit, register, errors, reset } = useForm<Inputs>({
     resolver: yupResolver(schema.word),
+    defaultValues: {
+      word: editedWord?.word,
+      translation: editedWord?.translation,
+    },
   });
   const onSubmit = (data: Inputs) => {
-    dispatch(addWord({ word: data.word, translation: data.translation }));
-    handleModalFn();
+    if (!editedWord) {
+      dispatch(addWord({ word: data.word, translation: data.translation }));
+    } else {
+      dispatch(editWord({ id: editedWord.id, word: data.word, translation: data.translation }));
+    }
+
+    reset();
+    toggleModal();
   };
 
   return (
     <>
       <StyledShadow visibility={visibility} />
       <StyledWrapper visibility={visibility}>
-        <CloseButton onClick={handleModalFn} />
-        <StyledHeading>Add new word</StyledHeading>
+        <CloseButton onClick={toggleModal} />
+        <StyledHeading>{editedWord ? 'Edit word' : 'Add new word'}</StyledHeading>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
@@ -49,6 +68,7 @@ const Modal: FC<ModalProps> = ({ visibility, handleModalFn }) => {
             label="word"
             register={register}
             errors={errors.word}
+            defaultValue={editedWord?.word}
           />
           <Input
             type="text"
@@ -57,8 +77,9 @@ const Modal: FC<ModalProps> = ({ visibility, handleModalFn }) => {
             label="translation"
             register={register}
             errors={errors.translation}
+            defaultValue={editedWord?.translation}
           />
-          <Button type="submit">add</Button>
+          <Button type="submit">{editedWord ? 'edit' : 'add'}</Button>
         </StyledForm>
       </StyledWrapper>
     </>
