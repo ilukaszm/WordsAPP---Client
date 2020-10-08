@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Paragraph, ButtonLink, SocialButton, AuthForm } from 'components';
+import { Paragraph, ButtonLink, AuthForm } from 'components';
 import {
   StyledWrapper,
   InnerWrapper,
@@ -16,7 +16,7 @@ interface LoginPageTemplateProps {
   handlerFn: () => void;
 }
 
-const LoginPageTemplate: FC<LoginPageTemplateProps> = ({ viewType, handlerFn }) => {
+const LoginPageTemplate: FC<LoginPageTemplateProps> = ({ viewType, handlerFn, children }) => {
   return (
     <StyledWrapper>
       <StyledHeader>
@@ -32,10 +32,7 @@ const LoginPageTemplate: FC<LoginPageTemplateProps> = ({ viewType, handlerFn }) 
       <StyledLogoBig variant="big" />
       <InnerWrapper>
         <StyledHeading>{viewType === 'register' ? 'Sign Up' : 'Sign In'}</StyledHeading>
-        <StyledSocialButtonWrapper>
-          <SocialButton variant="google" />
-          <SocialButton variant="facebook" />
-        </StyledSocialButtonWrapper>
+        <StyledSocialButtonWrapper>{children}</StyledSocialButtonWrapper>
         <AuthForm viewType={viewType} />
       </InnerWrapper>
     </StyledWrapper>

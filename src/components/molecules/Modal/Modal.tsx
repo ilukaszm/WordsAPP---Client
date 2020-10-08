@@ -1,11 +1,7 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers';
 
-import * as schema from 'utils/validationSchemas';
-import { addWord, editWord } from 'data/slices/wordsSlice';
 import { Input, Button } from 'components';
+import useModal from 'hooks/useModal';
 import {
   StyledWrapper,
   StyledForm,
@@ -13,11 +9,6 @@ import {
   StyledShadow,
   StyledHeading,
 } from './Modal.styled';
-
-interface Inputs {
-  word: string;
-  translation: string;
-}
 
 interface EditedWord {
   id: string;
@@ -34,25 +25,7 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ visibility, toggleModal, editedWord }) => {
-  const dispatch = useDispatch();
-
-  const { handleSubmit, register, errors, reset } = useForm<Inputs>({
-    resolver: yupResolver(schema.word),
-    defaultValues: {
-      word: editedWord?.word,
-      translation: editedWord?.translation,
-    },
-  });
-  const onSubmit = (data: Inputs) => {
-    if (!editedWord) {
-      dispatch(addWord({ word: data.word, translation: data.translation }));
-    } else {
-      dispatch(editWord({ id: editedWord.id, word: data.word, translation: data.translation }));
-    }
-
-    reset();
-    toggleModal();
-  };
+  const { handleSubmit, onSubmit, register, errors } = useModal(toggleModal, editedWord);
 
   return (
     <>

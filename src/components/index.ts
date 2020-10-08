@@ -8,6 +8,7 @@ export { default as Paragraph } from './atoms/Paragraph';
 export { default as Input } from './atoms/Input';
 export { default as Avatar } from './atoms/Avatar';
 export { default as Logo } from './atoms/Logo';
+export { default as PrivateRoute } from './atoms/PrivateRoute';
 
 export { default as NavBar } from './molecules/NavBar';
 export { default as AuthForm } from './molecules/AuthForm';

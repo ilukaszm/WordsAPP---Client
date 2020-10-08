@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Paragraph } from 'components';
 
 export const StyledForm = styled.form`
   padding: 20px;
@@ -14,4 +15,9 @@ export const StyledForm = styled.form`
   ${({ theme: { devices } }) => devices.tabletL} {
     width: 70%;
   }
+`;
+
+export const StyledError = styled(Paragraph)`
+  color: ${({ theme }) => theme.colors.secondaryRed};
+  font-size: ${({ theme }) => theme.sizes.S};
 `;

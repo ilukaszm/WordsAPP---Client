@@ -7,7 +7,7 @@ interface AuthSlice {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { email: '', password: '' } as AuthSlice,
+  initialState: { email: '', password: '', avatarURL: '' } as AuthSlice,
   reducers: {
     authUser: (
       state,
@@ -18,8 +18,19 @@ const authSlice = createSlice({
     ) => {
       state = action.payload;
     },
+    authSocialUser: (
+      state,
+      action: PayloadAction<{
+        email: string;
+        avatarURL: string;
+      }>,
+    ) => {
+      state = { ...action.payload, password: '' };
+    },
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { authUser } = authSlice.actions;
+export const { authUser, authSocialUser } = authSlice.actions;
+
+export const selectUser = (state: any) => state.auth;

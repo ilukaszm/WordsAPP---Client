@@ -27,9 +27,14 @@ export const StyledAvatar = styled.div`
 `;
 
 export const StyledAvatarImage = styled.div<AvatarProps>`
-  width: 100%;
-  height: 100%;
+  width: 42px;
+  height: 42px;
   background-image: url(${({ avatarURL }) => avatarURL});
   background-size: cover;
   background-position: center;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    width: 69px;
+    height: 69px;
+  }
 `;

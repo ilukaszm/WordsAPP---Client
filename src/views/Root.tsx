@@ -6,22 +6,26 @@ import theme from 'theme/theme';
 import GlobalStyles from 'theme/GlobalStyles';
 import { LoginPage, UserPage } from 'views';
 import routes from 'routes';
+import { PrivateRoute } from 'components';
+import { AuthProvider } from 'contexts/AuthContext';
 
 const Root = () => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Router>
-        <Switch>
-          <Route exact path={routes.home}>
-            <Redirect to={routes.wordsList} />
-          </Route>
-          <Route path={routes.login} component={LoginPage} />
-          <Route path={routes.wordsList} component={UserPage} />
-          <Route path={routes.addWord} component={UserPage} />
-          <Route path={routes.game} component={UserPage} />
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <GlobalStyles />
+        <Router>
+          <Switch>
+            <PrivateRoute exact path={routes.home}>
+              <Redirect to={routes.wordsList} />
+            </PrivateRoute>
+            <Route path={routes.login} component={LoginPage} />
+            <PrivateRoute path={routes.wordsList} component={UserPage} />
+            <PrivateRoute path={routes.addWord} component={UserPage} />
+            <PrivateRoute path={routes.game} component={UserPage} />
+          </Switch>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
