@@ -5,6 +5,7 @@ import { auth } from 'services/firebase';
 interface User {
   email: string;
   avatarURL: string;
+  uid: string;
 }
 
 const AuthContext = createContext(null);
@@ -16,10 +17,10 @@ export const AuthProvider: FC = ({ children }) => {
   useEffect(() => {
     const setUser = (user: any) => {
       if (user) {
-        const { email, photoURL: avatarURL } = user;
+        const { email, photoURL: avatarURL, uid: userId } = user;
 
-        setCurrentUser({ email, avatarURL });
-        localStorage.setItem('authUser', JSON.stringify({ email, avatarURL }));
+        setCurrentUser({ email, avatarURL, userId });
+        localStorage.setItem('authUser', JSON.stringify({ email, avatarURL, userId }));
       } else {
         localStorage.removeItem('authUser');
       }

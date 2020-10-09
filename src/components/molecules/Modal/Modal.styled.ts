@@ -31,6 +31,7 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   border-radius: 20px;
   background-color: ${({ theme }) => theme.colors.white};
   transition: all ease-in 0.6s;
+  z-index: 9999;
   ${({ theme: { devices } }) => devices.tablet} {
     height: 50vh;
   }

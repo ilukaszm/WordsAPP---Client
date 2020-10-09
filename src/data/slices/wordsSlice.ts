@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface Word {
   id: string;
@@ -7,77 +7,117 @@ interface Word {
   toRepeat: boolean;
 }
 
-interface WordsState {
-  words: Word[];
+interface State {
+  loading: boolean;
+  hasErrors: boolean;
+  allWords: Word[];
 }
+
+const initialState: State = {
+  loading: false,
+  hasErrors: false,
+  allWords: [],
+};
 
 const wordsSlice = createSlice({
   name: 'words',
-  initialState: [
-    { id: '0', word: 'add', translation: 'dodawac', toRepeat: false },
-    { id: '1', word: 'you', translation: 'ty', toRepeat: false },
-    { id: '2', word: 'game', translation: 'gra', toRepeat: false },
-  ] as Word[],
+  initialState,
   reducers: {
-    addWord: (
-      state,
-      action: PayloadAction<{
-        word: string;
-        translation: string;
-      }>,
-    ) => {
-      const { payload } = action;
-
-      state.push({ id: state.length.toString(), ...payload, toRepeat: false });
+    addWord: (state) => {
+      state.loading = true;
     },
-
-    removeWord: (
-      state,
-      action: PayloadAction<{
-        id: string;
-      }>,
-    ) => {
-      const { id } = action.payload;
-      const wordId = state.findIndex((word) => word.id === id);
-
-      state.splice(wordId, 1);
+    addWordSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.allWords.push(payload);
+      state.hasErrors = false;
     },
+    addWordFailure: (state) => {
+      state.loading = false;
+      state.hasErrors = true;
+    },
+    getWords: (state) => {
+      state.loading = true;
+    },
+    getWordsSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.allWords = payload;
+      state.hasErrors = false;
+    },
+    getWordsFailure: (state) => {
+      state.loading = false;
+      state.hasErrors = true;
+    },
+    removeWord: (state) => {
+      state.loading = true;
+    },
+    removeWordSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.hasErrors = false;
+      const { id } = payload;
+      const removedWordId = state.allWords.findIndex((word) => word.id === id);
 
-    editWord: (
-      state,
-      action: PayloadAction<{
-        id: string;
-        word: string;
-        translation: string;
-      }>,
-    ) => {
-      const { id, word, translation } = action.payload;
-      const editedWord = state.find((word) => word.id === id);
+      state.allWords.splice(removedWordId, 1);
+    },
+    removeWordFailure: (state) => {
+      state.loading = false;
+      state.hasErrors = true;
+    },
+    editWord: (state) => {
+      state.loading = true;
+    },
+    editWordSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.hasErrors = false;
+      const { id, word, translation } = payload;
+      const editedWord = state.allWords.find((word) => word.id === id);
 
       if (editedWord) {
         editedWord.word = word;
         editedWord.translation = translation;
       }
     },
-
-    changeWordStatus: (
-      state,
-      action: PayloadAction<{
-        id: string;
-      }>,
-    ) => {
-      const { id } = action.payload;
-      const editedWord = state.find((word) => word.id === id);
+    editWordFailure: (state) => {
+      state.loading = false;
+      state.hasErrors = true;
+    },
+    changeWordStatus: (state) => {
+      state.loading = true;
+    },
+    changeWordStatusSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.hasErrors = false;
+      const { id, toRepeat } = payload;
+      const editedWord = state.allWords.find((word) => word.id === id);
 
       if (editedWord) {
-        editedWord.toRepeat = !editedWord.toRepeat;
+        editedWord.toRepeat = toRepeat;
       }
+    },
+    changeWordStatusFailure: (state) => {
+      state.loading = false;
+      state.hasErrors = true;
     },
   },
 });
 
 export const wordsReducer = wordsSlice.reducer;
 
-export const { addWord, removeWord, editWord, changeWordStatus } = wordsSlice.actions;
+export const {
+  getWords,
+  addWord,
+  removeWord,
+  editWord,
+  changeWordStatus,
+  addWordSuccess,
+  getWordsSuccess,
+  removeWordSuccess,
+  editWordSuccess,
+  changeWordStatusSuccess,
+  addWordFailure,
+  getWordsFailure,
+  removeWordFailure,
+  editWordFailure,
+  changeWordStatusFailure,
+} = wordsSlice.actions;
 
-export const selectWords = (state: WordsState): Word[] => state.words;
+export const selectWords = (state: any): Word[] => state.words.allWords;

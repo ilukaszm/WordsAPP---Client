@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Paragraph, ItemButton } from 'components';
-import { changeWordStatus, removeWord } from 'data/slices/wordsSlice';
+import { removeItem, changeItemStatus } from 'helpers/manageData';
 import { WordWrapper } from './Word.styled';
 
 interface WordProps {
@@ -17,11 +17,11 @@ const Word: FC<WordProps> = ({ id, word, translation, toRepeat, toggleEditingWor
   const dispatch = useDispatch();
 
   const handlechangeWordStatus = () => {
-    dispatch(changeWordStatus({ id }));
+    dispatch(changeItemStatus(id, !toRepeat));
   };
 
   const handleRemoveWord = () => {
-    dispatch(removeWord({ id }));
+    dispatch(removeItem(id));
   };
 
   return (

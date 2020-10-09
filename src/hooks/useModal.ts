@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 
 import * as schema from 'utils/validationSchemas';
-import { addWord, editWord } from 'data/slices/wordsSlice';
+import { addItem, editItem } from 'helpers/manageData';
+import { useAuthContext } from 'contexts/AuthContext';
 
 interface Inputs {
   word: string;
@@ -19,6 +20,7 @@ interface EditedWord {
 
 export default (toggleFn: () => void, editedWord?: EditedWord | null) => {
   const dispatch = useDispatch();
+  const { userId }: any = useAuthContext();
 
   const { handleSubmit, register, errors, reset } = useForm<Inputs>({
     resolver: yupResolver(schema.word),
@@ -28,10 +30,12 @@ export default (toggleFn: () => void, editedWord?: EditedWord | null) => {
     },
   });
   const onSubmit = (data: Inputs) => {
+    const { word, translation } = data;
+
     if (!editedWord) {
-      dispatch(addWord({ word: data.word, translation: data.translation }));
+      dispatch(addItem({ word, translation, userId }));
     } else {
-      dispatch(editWord({ id: editedWord.id, word: data.word, translation: data.translation }));
+      dispatch(editItem(editedWord?.id, { word, translation }));
     }
 
     reset();
