@@ -25,8 +25,8 @@ export default (toggleFn: () => void, editedWord?: EditedWord | null) => {
   const { handleSubmit, register, errors, reset } = useForm<Inputs>({
     resolver: yupResolver(schema.word),
     defaultValues: {
-      word: editedWord?.word,
-      translation: editedWord?.translation,
+      word: editedWord?.word || '',
+      translation: editedWord?.translation || '',
     },
   });
   const onSubmit = (data: Inputs) => {

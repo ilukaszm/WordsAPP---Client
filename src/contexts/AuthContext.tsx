@@ -32,4 +32,4 @@ export const AuthProvider: FC = ({ children }) => {
 
   return <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>;
 };
-export const useAuthContext = () => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext) as User | null;
