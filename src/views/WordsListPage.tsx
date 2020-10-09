@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { WordsListPageTemplate } from 'templates';
 import { Words, Modal } from 'components';
 import { selectWords } from 'data/slices/wordsSlice';
+import { Portal } from 'utils/Portal';
 
 const WordsListPage: FC = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -44,14 +45,18 @@ const WordsListPage: FC = () => {
   }, [editedValueId, words]);
 
   return (
-    <WordsListPageTemplate
-      searchValue={searchValue}
-      handleChangeFn={handleChange}
-      toggleAddWord={toggleAddWord}
-    >
-      <Words searchValue={searchValue} toggleEditingWord={toggleEditingWord} />
-      <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
-    </WordsListPageTemplate>
+    <>
+      <WordsListPageTemplate
+        searchValue={searchValue}
+        handleChangeFn={handleChange}
+        toggleAddWord={toggleAddWord}
+      >
+        <Words searchValue={searchValue} toggleEditingWord={toggleEditingWord} />
+      </WordsListPageTemplate>
+      <Portal>
+        <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
+      </Portal>
+    </>
   );
 };
 
