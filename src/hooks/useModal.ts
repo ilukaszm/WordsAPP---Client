@@ -7,8 +7,8 @@ import { addItem, editItem } from 'helpers/manageData';
 import { useAuthContext } from 'contexts/AuthContext';
 
 interface Inputs {
-  word: string;
-  translation: string;
+  word: any;
+  translation: any;
 }
 
 interface EditedWord {
@@ -25,8 +25,8 @@ export default (toggleFn: () => void, editedWord?: EditedWord | null) => {
   const { handleSubmit, register, errors, reset } = useForm<Inputs>({
     resolver: yupResolver(schema.word),
     defaultValues: {
-      word: editedWord?.word || '',
-      translation: editedWord?.translation || '',
+      word: editedWord?.word,
+      translation: editedWord?.translation,
     },
   });
   const onSubmit = (data: Inputs) => {

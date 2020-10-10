@@ -53,6 +53,7 @@ const Input: FC<InputProps> = ({
         ref={register && register(rules)}
         value={value}
         defaultValue={defaultValue || ''}
+        autoComplete="off"
         onChange={onChange}
       />
       <label htmlFor={id}>{label}</label>

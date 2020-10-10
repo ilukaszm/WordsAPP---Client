@@ -22,9 +22,9 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 10px;
   width: 95vw;
-  height: 60vh;
+  height: 330px;
   display: ${({ visibility }) => (visibility ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
@@ -32,6 +32,8 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   transition: all ease-in 0.6s;
   z-index: 9999;
+  overflow: auto;
+
   ${({ theme: { devices } }) => devices.tablet} {
     height: 50vh;
   }
@@ -44,11 +46,12 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
 `;
 
 export const StyledHeading = styled(Heading)`
+  font-size: 24px;
   margin-top: 30px;
 `;
 
 export const StyledForm = styled.form`
-  margin-top: 58px;
+  margin-top: 40px;
   width: 70%;
   display: flex;
   flex-direction: column;
