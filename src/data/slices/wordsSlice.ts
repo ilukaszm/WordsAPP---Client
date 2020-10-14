@@ -7,13 +7,17 @@ interface Word {
   toRepeat: boolean;
 }
 
-interface State {
+interface Words {
+  words: InitialState;
+}
+
+interface InitialState {
   loading: boolean;
   hasErrors: boolean;
   allWords: Word[];
 }
 
-const initialState: State = {
+const initialState: InitialState = {
   loading: false,
   hasErrors: false,
   allWords: [],
@@ -120,4 +124,7 @@ export const {
   changeWordStatusFailure,
 } = wordsSlice.actions;
 
-export const selectWords = (state: any): Word[] => state.words.allWords;
+export const selectWords = (state: Words): Word[] => state.words.allWords;
+export const selectWordsToRepeat = (state: Words): Word[] =>
+  state.words.allWords.filter((word: Word) => word.toRepeat);
+export const selectWordsLoading = (state: Words) => state.words.loading;

@@ -1,21 +1,27 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { UserPageTemplate } from 'templates';
-import { WordsListPage, AddWordPage, GamePage } from 'views';
 import routes from 'routes';
+import { getItems } from 'helpers/manageData';
+import { useAuthContext } from 'contexts/AuthContext';
+
+const WordsListPage = lazy(() => import('./WordsListPage'));
+const FlashcardsPage = lazy(() => import('./FlashcardsPage'));
+const GamePage = lazy(() => import('./GamePage'));
 
 const UserPage: FC = () => {
   const { pathname } = useLocation();
-  const [viewType, setViewType] = useState<'wordsList' | 'addWord' | 'game'>('wordsList');
+  const [viewType, setViewType] = useState<'wordsList' | 'flashcards' | 'game'>('wordsList');
 
   useEffect(() => {
     switch (pathname) {
       case routes.wordsList:
         setViewType('wordsList');
         break;
-      case routes.addWord:
-        setViewType('addWord');
+      case routes.flashcards:
+        setViewType('flashcards');
         break;
       case routes.game:
         setViewType('game');
@@ -25,10 +31,17 @@ const UserPage: FC = () => {
     }
   }, [pathname]);
 
+  const dispatch = useDispatch();
+  const { userId }: any = useAuthContext();
+
+  useEffect(() => {
+    dispatch(getItems(userId));
+  }, [dispatch, userId]);
+
   return (
     <UserPageTemplate viewType={viewType}>
       {viewType === 'wordsList' && <WordsListPage />}
-      {viewType === 'addWord' && <AddWordPage />}
+      {viewType === 'flashcards' && <FlashcardsPage />}
       {viewType === 'game' && <GamePage />}
     </UserPageTemplate>
   );

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ListIcon, AddIcon, RepeatGameIcon, LogOutIcon } from 'assets';
+import { ListIcon, FlashcardIcon, RepeatGameIcon, LogOutIcon } from 'assets';
 import { Avatar } from 'components';
 import routes from 'routes';
 import { auth } from 'services/firebase';
@@ -26,8 +26,8 @@ const NavBar: FC<NavBarProps> = ({ className }) => {
             </NavBarItem>
           </li>
           <li>
-            <NavBarItem to={routes.addWord} as={NavLink}>
-              <AddIcon />
+            <NavBarItem to={routes.flashcards} as={NavLink}>
+              <FlashcardIcon />
             </NavBarItem>
           </li>
           <li>

@@ -9,7 +9,7 @@ import {
 } from './UserPageTemplate.styled';
 
 interface UserPageTemplateProps {
-  viewType: 'wordsList' | 'addWord' | 'game';
+  viewType: 'wordsList' | 'flashcards' | 'game';
 }
 
 const UserPageTemplate: FC<UserPageTemplateProps> = ({ children, viewType }) => {
@@ -20,10 +20,10 @@ const UserPageTemplate: FC<UserPageTemplateProps> = ({ children, viewType }) => 
       <InnerWrapper>
         <StyledHeading>
           {viewType === 'wordsList' && 'Your words'}
-          {viewType === 'addWord' && 'Add Word'}
+          {viewType === 'flashcards' && 'Flashcards'}
           {viewType === 'game' && 'Game'}
         </StyledHeading>
-        <div>{children}</div>
+        {children}
       </InnerWrapper>
     </StyledWrapper>
   );

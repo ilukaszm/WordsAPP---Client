@@ -2,6 +2,6 @@ export default {
   home: '/',
   login: '/login',
   wordsList: '/list',
-  addWord: '/add',
+  flashcards: '/flashcards',
   game: '/game',
 };

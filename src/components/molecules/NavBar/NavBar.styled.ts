@@ -20,6 +20,7 @@ export const StyledNavBar = styled.nav`
     > div {
       display: flex;
       margin: 0 30px auto;
+      }
     }
   }
 

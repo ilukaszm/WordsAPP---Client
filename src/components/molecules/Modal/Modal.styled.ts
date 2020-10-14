@@ -34,13 +34,9 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   z-index: 9999;
   overflow: auto;
 
-  ${({ theme: { devices } }) => devices.tablet} {
-    height: 50vh;
-  }
-
   ${({ theme: { devices } }) => devices.tabletL} {
     width: 50vw;
-    height: 60vh;
+    height: auto;
     border: 2px solid ${({ theme }) => theme.colors.black};
   }
 `;
@@ -51,7 +47,7 @@ export const StyledHeading = styled(Heading)`
 `;
 
 export const StyledForm = styled.form`
-  margin-top: 40px;
+  margin: 40px 0;
   width: 70%;
   display: flex;
   flex-direction: column;

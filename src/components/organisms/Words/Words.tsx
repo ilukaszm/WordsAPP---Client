@@ -1,26 +1,14 @@
-import React, { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
 
 import { Word } from 'components';
-import { selectWords } from 'data/slices/wordsSlice';
-import { getItems } from 'helpers/manageData';
-import { useAuthContext } from 'contexts/AuthContext';
 
 interface WordsProps {
   searchValue: string;
   toggleEditingWord: (id: string) => void;
+  words: any[];
 }
 
-const Words: FC<WordsProps> = ({ searchValue, toggleEditingWord }) => {
-  const dispatch = useDispatch();
-  const { userId }: any = useAuthContext();
-
-  useEffect(() => {
-    dispatch(getItems(userId));
-  }, [dispatch, userId]);
-
-  const words = useSelector(selectWords);
-
+const Words: FC<WordsProps> = ({ searchValue, toggleEditingWord, words }) => {
   return (
     <>
       {words

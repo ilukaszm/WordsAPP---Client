@@ -12,6 +12,6 @@ export { ReactComponent as AvatarPersonIcon } from './icons/avatarPerson.svg';
 export { ReactComponent as AvatarNoneIcon } from './icons/avatarNone.svg';
 
 export { ReactComponent as ListIcon } from './icons/list.svg';
-export { ReactComponent as AddIcon } from './icons/add.svg';
+export { ReactComponent as FlashcardIcon } from './icons/flashcard.svg';
 export { ReactComponent as RepeatGameIcon } from './icons/brain.svg';
 export { ReactComponent as LogOutIcon } from './icons/logout.svg';

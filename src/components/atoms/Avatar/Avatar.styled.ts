@@ -6,8 +6,8 @@ export const StyledAvatar = styled.div`
   position: relative;
   display: block;
   cursor: pointer;
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   overflow: hidden;
 
@@ -27,8 +27,8 @@ export const StyledAvatar = styled.div`
 `;
 
 export const StyledAvatarImage = styled.div<AvatarProps>`
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
   background-image: url(${({ avatarURL }) => avatarURL});
   background-size: cover;
   background-position: center;
