@@ -7,15 +7,15 @@ export const StyledCard = styled.div<{ clicked: boolean }>`
   width: 300px;
   height: 180px;
   color: ${({ theme }) => theme.colors.white};
-  animation: move 0.3s ease-in-out;
+  animation: move 0.8s ease-in-out;
 
   @keyframes move {
     from {
-      transform: translateY(-20%);
+      transform: translateX(-100%);
       opacity: 0;
     }
     to {
-      transform: translateY(0);
+      transform: translateX(0);
       opacity: 1;
     }
   }

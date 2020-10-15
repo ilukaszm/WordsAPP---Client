@@ -20,4 +20,14 @@ export const StyledForm = styled.form`
 export const StyledError = styled(Paragraph)`
   color: ${({ theme }) => theme.colors.secondaryRed};
   font-size: ${({ theme }) => theme.sizes.S};
+  animation: errorAppear 0.3s ease;
+
+  @keyframes errorAppear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;

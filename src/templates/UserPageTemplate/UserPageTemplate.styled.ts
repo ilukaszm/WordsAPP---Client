@@ -36,16 +36,4 @@ export const StyledNavBar = styled(NavBar)`
 export const StyledHeading = styled(Heading)`
   padding: 10px 0 20px 0px;
   font-weight: ${({ theme }) => theme.bolds.light};
-  animation: moveText 0.3s ease-in-out;
-
-  @keyframes moveText {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
 `;

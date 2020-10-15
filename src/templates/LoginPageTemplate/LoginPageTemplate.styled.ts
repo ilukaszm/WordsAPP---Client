@@ -77,6 +77,18 @@ export const StyledLogoBig = styled(Logo)`
     margin-right: auto;
     display: block;
     width: 35%;
+    animation: loading 0.8s ease;
+
+    @keyframes loading {
+      from {
+        opacity: 0;
+        transform: translate(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
   }
 `;
 

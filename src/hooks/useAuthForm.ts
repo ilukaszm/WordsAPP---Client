@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers';
 import * as schema from 'utils/validationSchemas';
 import usePreviousPage from 'hooks/usePreviousPage';
 import { auth } from 'services/firebase';
+import { createUser } from 'helpers/manageData';
 
 interface Inputs {
   email: string;
@@ -27,7 +28,15 @@ export default (viewType: 'register' | 'login') => {
         await auth().signInWithEmailAndPassword(email, password);
         previousPage();
       } else {
-        await auth().createUserWithEmailAndPassword(email, password);
+        const result = await auth().createUserWithEmailAndPassword(email, password);
+        if (result) {
+          const user = {
+            userId: result.user?.uid,
+            email: result.user?.email,
+            avatarURL: result.user?.photoURL,
+          };
+          createUser(user);
+        }
         previousPage();
       }
     } catch (error) {

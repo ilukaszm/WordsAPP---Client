@@ -1,4 +1,4 @@
-import { wordsRef } from 'services/database';
+import { wordsRef, usersRef } from 'services/database';
 import {
   getWords,
   addWord,
@@ -86,5 +86,13 @@ export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispat
     dispatch(changeWordStatusSuccess({ id, toRepeat }));
   } catch (error) {
     dispatch(changeWordStatusFailure());
+  }
+};
+
+export const createUser = async ({ userId, email, avatarURL }: any) => {
+  try {
+    await usersRef.doc(userId).set({ email, avatarURL });
+  } catch (error) {
+    console.log(error);
   }
 };

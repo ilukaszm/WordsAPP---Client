@@ -10,6 +10,12 @@ const GlobalStyles = createGlobalStyle`
     html{
       font-family: 'Montserrat', sans-serif;
     }
+
+   
+      ::selection{
+        background:${({ theme }) => theme.colors.yellow};
+      }
+
  
 `;
 

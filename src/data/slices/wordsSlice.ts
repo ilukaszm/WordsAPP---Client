@@ -39,6 +39,7 @@ const wordsSlice = createSlice({
       state.loading = false;
       state.hasErrors = true;
     },
+
     getWords: (state) => {
       state.loading = true;
     },
@@ -51,6 +52,7 @@ const wordsSlice = createSlice({
       state.loading = false;
       state.hasErrors = true;
     },
+
     removeWord: (state) => {
       state.loading = true;
     },
@@ -66,6 +68,7 @@ const wordsSlice = createSlice({
       state.loading = false;
       state.hasErrors = true;
     },
+
     editWord: (state) => {
       state.loading = true;
     },
@@ -84,6 +87,7 @@ const wordsSlice = createSlice({
       state.loading = false;
       state.hasErrors = true;
     },
+
     changeWordStatus: (state) => {
       state.loading = true;
     },
