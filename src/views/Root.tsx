@@ -27,6 +27,7 @@ const Root = () => {
               <PrivateRoute path={routes.wordsList} component={UserPage} />
               <PrivateRoute path={routes.flashcards} component={UserPage} />
               <PrivateRoute path={routes.game} component={UserPage} />
+              <PrivateRoute path={routes.profile} component={UserPage} />
             </Switch>
           </Suspense>
         </Router>

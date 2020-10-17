@@ -10,6 +10,7 @@ export { default as Avatar } from './atoms/Avatar';
 export { default as Logo } from './atoms/Logo';
 export { default as PrivateRoute } from './atoms/PrivateRoute';
 export { default as Card } from './atoms/Card';
+export { default as Checkbox } from './atoms/Checkbox';
 
 export { default as NavBar } from './molecules/NavBar';
 export { default as AuthForm } from './molecules/AuthForm';

@@ -4,6 +4,7 @@ import { LoginPageTemplate } from 'templates';
 import { SocialButton } from 'components';
 import { googleAuth, fbAuth } from 'services/firebase';
 import usePreviousPage from 'hooks/usePreviousPage';
+import { createUserProfile } from 'helpers/manageData';
 
 const LoginPage: FC = () => {
   const [viewType, setViewType] = useState<'login' | 'register'>('login');
@@ -22,7 +23,10 @@ const LoginPage: FC = () => {
       <SocialButton
         variant="google"
         onClick={async () => {
-          await googleAuth();
+          const user = await googleAuth();
+          if (user) {
+            await createUserProfile(user);
+          }
           previousPage();
         }}
       />

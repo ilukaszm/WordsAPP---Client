@@ -10,10 +10,13 @@ import { useAuthContext } from 'contexts/AuthContext';
 const WordsListPage = lazy(() => import('./WordsListPage'));
 const FlashcardsPage = lazy(() => import('./FlashcardsPage'));
 const GamePage = lazy(() => import('./GamePage'));
+const ProfilePage = lazy(() => import('./ProfilePage'));
+
+type ViewType = 'wordsList' | 'flashcards' | 'game' | 'profile';
 
 const UserPage: FC = () => {
   const { pathname } = useLocation();
-  const [viewType, setViewType] = useState<'wordsList' | 'flashcards' | 'game'>('wordsList');
+  const [viewType, setViewType] = useState<ViewType>('wordsList');
 
   useEffect(() => {
     switch (pathname) {
@@ -25,6 +28,9 @@ const UserPage: FC = () => {
         break;
       case routes.game:
         setViewType('game');
+        break;
+      case routes.profile:
+        setViewType('profile');
         break;
       default:
         break;
@@ -43,6 +49,7 @@ const UserPage: FC = () => {
       {viewType === 'wordsList' && <WordsListPage />}
       {viewType === 'flashcards' && <FlashcardsPage />}
       {viewType === 'game' && <GamePage />}
+      {viewType === 'profile' && <ProfilePage />}
     </UserPageTemplate>
   );
 };

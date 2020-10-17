@@ -4,4 +4,5 @@ export default {
   wordsList: '/list',
   flashcards: '/flashcards',
   game: '/game',
+  profile: '/profile',
 };

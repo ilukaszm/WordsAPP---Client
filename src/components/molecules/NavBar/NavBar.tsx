@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { ListIcon, FlashcardIcon, RepeatGameIcon, LogOutIcon } from 'assets';
 import { Avatar } from 'components';
 import routes from 'routes';
 import { auth } from 'services/firebase';
-import { useAuthContext } from 'contexts/AuthContext';
+import { selectUserProfile } from 'data/slices/userProfileSlice';
 import { StyledNavBar, NavBarItem } from './NavBar.styled';
 
 interface NavBarProps {
@@ -13,11 +14,13 @@ interface NavBarProps {
 }
 
 const NavBar: FC<NavBarProps> = ({ className }) => {
-  const { avatarURL }: any = useAuthContext();
+  const { avatarURL } = useSelector(selectUserProfile);
 
   return (
     <StyledNavBar className={className} data-testid="navbar">
-      <Avatar avatarURL={avatarURL} />
+      <Link to={routes.profile}>
+        <Avatar avatarURL={avatarURL || null} />
+      </Link>
       <ul>
         <div>
           <li>
