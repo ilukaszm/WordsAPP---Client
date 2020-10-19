@@ -96,33 +96,37 @@ export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispat
   }
 };
 
-export const createUserProfile = async (user: any) => {
+export const createProfileByIntegrate = async (user: any) => {
   const currentUser: any = await auth().currentUser;
   const checkUser = await usersRef.doc(currentUser?.uid).get();
 
   if (!checkUser.exists) {
     const { profile } = user?.additionalUserInfo;
-    const details = {
+    const userDetails = {
       email: profile.email,
       avatarURL: profile.picture,
     };
 
-    const defaultValues = { gameSound: true, numberOfLevels: 5 };
+    const appDefaultValues = { gameSound: true, numberOfLevels: 5 };
 
     try {
-      await usersRef.doc(currentUser?.uid).set({ ...details, ...defaultValues });
+      await usersRef.doc(currentUser?.uid).set({ ...userDetails, ...appDefaultValues });
     } catch (error) {
       throw new Error(error);
     }
   }
 };
 
-export const createUserProfileWithEmail = async (user: any) => {
+export const createProfileByEmailAndPassword = async (user: any) => {
   const { userId, email, avatarURL } = user;
-  const defaultValues = { gameSound: true, numberOfLevels: 5 };
+  const userDetails = {
+    email,
+    avatarURL,
+  };
+  const appDefaultValues = { gameSound: true, numberOfLevels: 5 };
 
   try {
-    await usersRef.doc(userId).set({ email, avatarURL, ...defaultValues });
+    await usersRef.doc(userId).set({ ...userDetails, ...appDefaultValues });
   } catch (error) {
     throw new Error(error);
   }

@@ -7,18 +7,11 @@ import { storage } from 'services/firebase';
 import { updateUserProfile, getUserProfile } from 'helpers/manageData';
 import { selectUserProfile } from 'data/slices/userProfileSlice';
 
-interface UserProfile {
-  email: string;
-  avatarURL: string;
-  gameSound: false;
-  numberOfLevels: string;
-}
-
 const ProfilePage: FC = () => {
   const dispatch = useDispatch();
-  const { userId } = useAuthContext() as any;
+  const { userId } = useAuthContext();
 
-  const profileData: UserProfile = useSelector(selectUserProfile);
+  const profileData = useSelector(selectUserProfile);
 
   const [imageAsFile, setImageAsFile] = useState<File>();
   const [imageAsUrl, setImageAsUrl] = useState('');

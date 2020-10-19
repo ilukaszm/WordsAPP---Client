@@ -1,15 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface ProfileData {
+  email: string;
+  avatarURL: string;
+  gameSound: boolean;
+  numberOfLevels: string;
+}
+
 interface InitialState {
   loading: boolean;
   hasErrors: boolean;
-  profileData: any[];
+  profileData: ProfileData;
+}
+
+interface UserProfile {
+  userProfile: InitialState;
 }
 
 const initialState: InitialState = {
   loading: false,
   hasErrors: false,
-  profileData: [],
+  profileData: { email: '', avatarURL: '', gameSound: true, numberOfLevels: '5' },
 };
 
 const userProfileSlice = createSlice({
@@ -39,4 +50,4 @@ export const {
   getUserProfileDataFailure,
 } = userProfileSlice.actions;
 
-export const selectUserProfile = (state: any) => state.userProfile.profileData;
+export const selectUserProfile = (state: UserProfile) => state.userProfile.profileData;

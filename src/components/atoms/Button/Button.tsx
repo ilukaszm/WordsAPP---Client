@@ -7,7 +7,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
   type?: 'submit' | 'reset' | 'button';
   buttonRef?: RefObject<HTMLButtonElement>;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
 }
 
 const Button: FC<ButtonProps> = ({ className, type, variant, children, onClick, buttonRef }) => (

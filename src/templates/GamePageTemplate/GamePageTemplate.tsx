@@ -13,19 +13,32 @@ import {
   StyledProgressBar,
   StyledTextarea,
   AnswerMessage,
+  GameButton,
+  StyledGameButtonsWrapper,
 } from './GamePageTemplate.styled';
+
+interface Word {
+  id: string;
+  word: string;
+  translation: string;
+  toRepeat: boolean;
+  gameId?: string;
+}
 
 interface GameProps {
   isGameLaunch: null | boolean;
+  useWordsList: boolean;
   handleLaunchGame: () => void;
   handleChangeAnswer: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  handleCheckAnswer: () => void;
+  handleCheckAnswer: (e?: any, buttonAnswer?: string) => void;
   setNextLevel: () => void;
+  toggleUseWordsList: () => void;
   answerValue: string;
   activeLevelVariant: 'wordToTranslate' | 'translateToWord';
   activeWord: string;
   activeWordTranslation: string;
   answerIsCorrect: null | boolean;
+  answersWords: Word[];
   gameProgress: number;
 }
 
@@ -43,6 +56,9 @@ const GamePageTemplate: FC<GameProps> = ({
   answerValue,
   answerIsCorrect,
   gameProgress,
+  useWordsList,
+  answersWords,
+  toggleUseWordsList,
 }) => {
   const primaryButton = useRef<HTMLButtonElement>(null);
   const textfield = useRef<HTMLTextAreaElement>(null);
@@ -58,6 +74,37 @@ const GamePageTemplate: FC<GameProps> = ({
     document.addEventListener('keydown', setButtonClicked);
     return () => document.removeEventListener('keydown', setButtonClicked);
   }, []);
+
+  const renderGameType = () => {
+    if (useWordsList) {
+      return (
+        <StyledGameButtonsWrapper>
+          {answersWords.map(({ gameId, translation, word }) => {
+            const buttonAnswer = activeLevelVariant === 'wordToTranslate' ? translation : word;
+            return (
+              <GameButton
+                type="button"
+                key={gameId}
+                onClick={(e) => handleCheckAnswer(e, buttonAnswer)}
+                variant="secondary"
+              >
+                {buttonAnswer}
+              </GameButton>
+            );
+          })}
+        </StyledGameButtonsWrapper>
+      );
+    }
+    return (
+      <TextField
+        as={StyledTextarea}
+        placeholder="type answer"
+        value={answerValue}
+        onChange={handleChangeAnswer}
+        ref={textfield}
+      />
+    );
+  };
 
   const renderContent = () => {
     switch (isGameLaunch) {
@@ -94,15 +141,11 @@ const GamePageTemplate: FC<GameProps> = ({
                 </span>
               </AnswerMessage>
             ) : (
-              <TextField
-                as={StyledTextarea}
-                placeholder="type answer"
-                value={answerValue}
-                onChange={handleChangeAnswer}
-                ref={textfield}
-              />
+              renderGameType()
             )}
-            <StyledButtonLink>use words list</StyledButtonLink>
+            <StyledButtonLink onClick={toggleUseWordsList} list={!useWordsList}>
+              {useWordsList ? 'use keyboard' : 'use word list'}
+            </StyledButtonLink>
             <StyledButtonWrapper>
               <Button variant="secondary" onClick={setNextLevel}>
                 Skip

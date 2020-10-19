@@ -4,17 +4,15 @@ import { useDispatch } from 'react-redux';
 import { auth } from 'services/firebase';
 import { getUserProfile } from 'helpers/manageData';
 
-interface User {
-  email: string;
-  avatarURL: string;
-  uid: string;
+interface CurrentUser {
+  userId: string;
 }
 
-const AuthContext = createContext(null);
+const AuthContext = createContext({ userId: '' });
 
 export const AuthProvider: FC = ({ children }) => {
-  const authUser = JSON.parse(localStorage.getItem('authUser') as string);
-  const [currentUser, setCurrentUser] = useState(authUser);
+  const authUser = JSON.parse(localStorage.getItem('authUser') as any) as string;
+  const [currentUser, setCurrentUser] = useState({ userId: authUser });
 
   const dispatch = useDispatch();
 
@@ -37,4 +35,4 @@ export const AuthProvider: FC = ({ children }) => {
 
   return <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>;
 };
-export const useAuthContext = () => useContext(AuthContext) as User | null;
+export const useAuthContext = () => useContext(AuthContext) as CurrentUser;

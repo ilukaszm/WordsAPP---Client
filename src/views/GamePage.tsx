@@ -1,35 +1,45 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, useState, ChangeEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { GamePageTemplate } from 'templates';
 import { selectWordsToRepeat } from 'data/slices/wordsSlice';
+import { selectUserProfile } from 'data/slices/userProfileSlice';
 import failureSound from 'assets/sounds/failure.wav';
 import startSound from 'assets/sounds/start.wav';
 import successSound from 'assets/sounds/success.wav';
+import { getRandom, uniqueId } from 'utils/utils';
 
 interface Word {
   id: string;
   word: string;
   translation: string;
   toRepeat: boolean;
+  gameId?: string;
 }
 
 type LevelVariant = 'wordToTranslate' | 'translateToWord';
 
 const GamePage: FC = () => {
-  const gameSettings = {
-    numberOfLevels: 2,
-    sound: true,
-  };
-
+  const gameSettings = useSelector(selectUserProfile);
   const words = useSelector(selectWordsToRepeat) as Word[];
 
   const [isGameLaunch, setIsGameLaunch] = useState<null | boolean>(null);
   const [activeLevel, setActiveLevel] = useState(0);
   const [activeLevelVariant, setActiveLevelVariant] = useState<LevelVariant>('wordToTranslate');
   const [gameWords, setGameWords] = useState<Word[]>([]);
+  const [answersWords, setAnswersWords] = useState<Word[]>([]);
   const [answerValue, setAnswerValue] = useState('');
   const [answerIsCorrect, setAnswerIsCorrect] = useState<null | boolean>(null);
+  const [gameSound, setGameSound] = useState(false);
+  const [numberOfLevels, setNumberOfLevels] = useState(10);
+  const [useWordsList, setUseWordsList] = useState(false);
+
+  useEffect(() => {
+    const { gameSound, numberOfLevels } = gameSettings;
+
+    setGameSound(gameSound);
+    setNumberOfLevels(Number(numberOfLevels));
+  }, [gameSettings]);
 
   const activeWord = gameWords[activeLevel]?.word;
   const activeWordTranslation = gameWords[activeLevel]?.translation;
@@ -43,14 +53,13 @@ const GamePage: FC = () => {
     const sound = sounds[variant];
     const audio = new Audio(sound);
 
-    if (gameSettings.sound) {
+    if (gameSound) {
       audio.play();
     }
   };
 
   const randomWords = () => {
     const gameWords: Word[] = [];
-    const { numberOfLevels } = gameSettings;
 
     for (let i = 0; i < numberOfLevels; i++) {
       const randomIndex = () => Math.floor(Math.random() * (words.length - 1) * 1);
@@ -60,6 +69,21 @@ const GamePage: FC = () => {
 
     setGameWords(gameWords);
   };
+
+  function randomAnswers(activeLevel: number) {
+    const wordsWithoutAnswer = gameWords.filter((word) => word.id !== gameWords[activeLevel].id);
+    const wordsArray = getRandom(wordsWithoutAnswer, 3);
+
+    const correctAnswerIndex = Math.floor(Math.random() * 2);
+    wordsArray.splice(correctAnswerIndex, 0, gameWords[activeLevel]);
+
+    const wordsArrayWithGameId = wordsArray.map((word) => ({
+      ...word,
+      gameId: uniqueId(),
+    }));
+
+    setAnswersWords(wordsArrayWithGameId);
+  }
 
   const randomLevelVariant = () => {
     const randomBoolean = Math.random() >= 0.5;
@@ -78,13 +102,35 @@ const GamePage: FC = () => {
     playAudio('start');
   };
 
-  const handleCheckAnswer = () => {
+  const setNextLevel = () => {
+    const isLastLevel = activeLevel + 1 === numberOfLevels;
+
+    if (isLastLevel) {
+      setIsGameLaunch(false);
+      setActiveLevel(0);
+      setAnswerValue('');
+      setAnswerIsCorrect(null);
+      setUseWordsList(false);
+      randomAnswers(0);
+
+      return;
+    }
+    setActiveLevel((prevState) => prevState + 1);
+    randomLevelVariant();
+    setAnswerValue('');
+    setAnswerIsCorrect(null);
+    randomAnswers(activeLevel + 1);
+  };
+
+  const handleCheckAnswer = (e: any, buttonAnswer = '') => {
     const isAnswerCorrect = () => {
       let output: boolean;
+      const answerType = buttonAnswer || answerValue;
+
       if (activeLevelVariant === 'wordToTranslate') {
-        output = answerValue.toLowerCase() === gameWords[activeLevel].translation.toLowerCase();
+        output = answerType.toLowerCase() === gameWords[activeLevel].translation.toLowerCase();
       } else {
-        output = answerValue.toLowerCase() === gameWords[activeLevel].word.toLowerCase();
+        output = answerType.toLowerCase() === gameWords[activeLevel].word.toLowerCase();
       }
 
       return output;
@@ -99,29 +145,18 @@ const GamePage: FC = () => {
     }
   };
 
-  const setNextLevel = () => {
-    const { numberOfLevels } = gameSettings;
-    const isLastLevel = activeLevel + 1 === numberOfLevels;
-
-    if (isLastLevel) {
-      setIsGameLaunch(false);
-      setActiveLevel(0);
-      setAnswerValue('');
-      setAnswerIsCorrect(null);
-      return;
-    }
-    setActiveLevel((prevState) => prevState + 1);
-    randomLevelVariant();
-    setAnswerValue('');
-    setAnswerIsCorrect(null);
-  };
-
   const handleChangeAnswer = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const answerValue = e.target.value;
     setAnswerValue(answerValue);
   };
 
-  const gameProgress = (activeLevel / gameSettings.numberOfLevels) * 100;
+  const gameProgress = (activeLevel / numberOfLevels) * 100;
+
+  const toggleUseWordsList = () => {
+    randomAnswers(activeLevel);
+
+    setUseWordsList((prevState) => !prevState);
+  };
 
   return (
     <GamePageTemplate
@@ -136,6 +171,9 @@ const GamePage: FC = () => {
       answerValue={answerValue}
       answerIsCorrect={answerIsCorrect}
       gameProgress={gameProgress}
+      answersWords={answersWords}
+      useWordsList={useWordsList}
+      toggleUseWordsList={toggleUseWordsList}
     />
   );
 };

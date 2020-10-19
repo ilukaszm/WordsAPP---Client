@@ -4,7 +4,7 @@ import { StyledButtonLink, StyledButton } from './ButtonLink.styled';
 
 interface ButtonLinkProps {
   className?: string;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
 }
 
 const ButtonLink: FC<ButtonLinkProps> = ({ className, children, onClick }) => {

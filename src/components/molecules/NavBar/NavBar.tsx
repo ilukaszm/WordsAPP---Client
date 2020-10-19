@@ -19,7 +19,7 @@ const NavBar: FC<NavBarProps> = ({ className }) => {
   return (
     <StyledNavBar className={className} data-testid="navbar">
       <Link to={routes.profile}>
-        <Avatar avatarURL={avatarURL || null} />
+        <Avatar avatarURL={avatarURL} />
       </Link>
       <ul>
         <div>

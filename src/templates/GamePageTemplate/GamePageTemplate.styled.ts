@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Heading, Paragraph, ButtonLink } from 'components';
+import { Heading, Paragraph, ButtonLink, Button } from 'components';
 import keyboardIcon from 'assets/icons/keyboard.svg';
 import listIcon from 'assets/icons/list.svg';
 
@@ -135,5 +135,30 @@ export const AnswerMessage = styled(Paragraph)`
     from {
       opacity: 1;
     }
+  }
+`;
+
+export const StyledGameButtonsWrapper = styled.div`
+  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto 24px;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    height: 300px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+`;
+
+export const GameButton = styled(Button)`
+  margin-bottom: 16px;
+  margin-left: 5px;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    margin-left: 0;
   }
 `;
