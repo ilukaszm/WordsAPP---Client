@@ -2,7 +2,7 @@ import React, { FC, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ProfilePageTemplate } from 'templates';
-import { useAuthContext } from 'contexts/AuthContext';
+import { useAuthContext } from 'context/AuthContext';
 import { storage } from 'services/firebase';
 import { updateUserProfile, getUserProfile } from 'helpers/manageData';
 import { selectUserProfile } from 'data/slices/userProfileSlice';

@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { AuthProvider } from 'contexts/AuthContext';
+import { AuthProvider } from 'context/AuthContext';
 import routes from 'routes';
 import theme from 'theme/theme';
 import GlobalStyles from 'theme/GlobalStyles';

@@ -12,7 +12,7 @@ export const StyledShadow = styled.div<{ visibility: boolean }>`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.13);
 
-  ${({ theme: { devices } }) => devices.tabletL} {
+  ${({ theme: { devices } }) => devices.tablet} {
     display: none;
   }
 `;

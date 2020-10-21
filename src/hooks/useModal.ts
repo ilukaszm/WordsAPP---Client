@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers';
 
 import * as schema from 'utils/validationSchemas';
 import { addItem, editItem } from 'helpers/manageData';
-import { useAuthContext } from 'contexts/AuthContext';
+import { useAuthContext } from 'context/AuthContext';
 
 interface Inputs {
   word: any;

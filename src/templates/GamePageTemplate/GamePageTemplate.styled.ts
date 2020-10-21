@@ -157,8 +157,20 @@ export const StyledGameButtonsWrapper = styled.div`
 export const GameButton = styled(Button)`
   margin-bottom: 16px;
   margin-left: 5px;
+  width: 45%;
 
   ${({ theme: { devices } }) => devices.tablet} {
+    width: 50%;
     margin-left: 0;
+  }
+`;
+
+export const GameInfoWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+
+  > p:nth-child(2) {
+    text-align: right;
   }
 `;

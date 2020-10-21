@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { UserPageTemplate } from 'templates';
 import routes from 'routes';
 import { getItems } from 'helpers/manageData';
-import { useAuthContext } from 'contexts/AuthContext';
+import { useAuthContext } from 'context/AuthContext';
 
 const WordsListPage = lazy(() => import('./WordsListPage'));
 const FlashcardsPage = lazy(() => import('./FlashcardsPage'));

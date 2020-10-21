@@ -1,5 +1,5 @@
 import { wordsRef, usersRef } from 'services/database';
-import { auth } from 'services/firebase';
+import { auth, firestore } from 'services/firebase';
 import {
   getWords,
   addWord,
@@ -132,10 +132,22 @@ export const createProfileByEmailAndPassword = async (user: any) => {
   }
 };
 
-type NewProfileData = { avatarUrl?: string; gameSound: boolean; numberOfLevels: string };
+type NewProfileData = {
+  avatarURL?: string;
+  gameSound?: boolean;
+  gamePoints?: number;
+  numberOfLevels?: string;
+};
 export const updateUserProfile = async (userId: any, newData: NewProfileData) => {
+  const dataToUpdate = () => {
+    if (newData.gamePoints) {
+      return { gamePoints: firestore.FieldValue.increment(newData.gamePoints) };
+    }
+    return { ...newData };
+  };
+
   try {
-    await usersRef.doc(userId).update({ ...newData });
+    await usersRef.doc(userId).update({ ...dataToUpdate() });
   } catch (error) {
     throw new Error(error);
   }

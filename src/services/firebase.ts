@@ -32,3 +32,5 @@ export const fbAuth = async () => {
 export const { auth } = firebase;
 export const db = firebase.firestore();
 export const storage = firebase.storage();
+
+export const { firestore } = firebase;
