@@ -1,15 +1,11 @@
 import React, { FC, RefObject } from 'react';
-import styled from 'styled-components';
 
 import { useGameContext } from 'context/GameContext';
-import { StyledGameButtonsWrapper, GameButton, StyledTextarea } from '../GamePageTemplate.styled';
+import { StyledGameButtonsWrapper, GameButton, StyledTextarea } from './GameInterface.styled';
 
 interface GameInterfaceProps {
   textFieldRef?: RefObject<HTMLTextAreaElement>;
 }
-
-const TextField = styled.textarea``;
-
 const GameInterface: FC<GameInterfaceProps> = ({ textFieldRef }) => {
   const {
     useWordsList,
@@ -40,8 +36,7 @@ const GameInterface: FC<GameInterfaceProps> = ({ textFieldRef }) => {
     );
   }
   return (
-    <TextField
-      as={StyledTextarea}
+    <StyledTextarea
       placeholder="type answer"
       value={answerTextValue}
       onChange={handleChangeAnswer}

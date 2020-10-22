@@ -1,8 +1,10 @@
 import React, { FC, RefObject } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button } from 'components';
 import { useGameContext } from 'context/GameContext';
-import { StyledWrapper, StyledHeading } from '../GamePageTemplate.styled';
+import routes from 'routes';
+import { StyledWrapper, StyledHeading, StyledButtonLink } from './GameEnd.styled';
 
 interface GameEndProps {
   buttonRef?: RefObject<HTMLButtonElement>;
@@ -19,6 +21,9 @@ const GameEnd: FC<GameEndProps> = ({ buttonRef }) => {
           😊
         </span>
       </StyledHeading>
+      <StyledButtonLink>
+        <Link to={routes.gameStats}>Game stats</Link>
+      </StyledButtonLink>
       <Button onClick={handleLaunchGame} buttonRef={buttonRef}>
         Play again
       </Button>

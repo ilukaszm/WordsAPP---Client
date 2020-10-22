@@ -22,12 +22,12 @@ export default () => {
     }
   };
 
-  const toggleEditingWord = (id: string) => {
+  const setEditingWordOnModal = (id: string) => {
     setEditedValueId(id);
     toggleModal();
   };
 
-  const toggleAddWord = () => {
+  const setAddingWordOnModal = () => {
     if (editedValueId) {
       setEditedValueId(null);
     }
@@ -45,9 +45,9 @@ export default () => {
     searchValue,
     editedWord,
     isModalVisible,
-    toggleAddWord,
+    setAddingWordOnModal,
     toggleModal,
-    toggleEditingWord,
+    setEditingWordOnModal,
     handleChange,
   };
 };

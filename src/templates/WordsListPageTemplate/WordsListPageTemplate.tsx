@@ -9,14 +9,14 @@ import {
 
 interface WordsListPageTemplateProps {
   searchValue: string;
-  toggleAddWord: () => void;
+  setAddingWordOnModal: () => void;
   handleChangeFn: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
   searchValue,
   handleChangeFn,
-  toggleAddWord,
+  setAddingWordOnModal,
   children,
 }) => {
   return (
@@ -27,7 +27,7 @@ const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
         <StyledParagraph>translation:</StyledParagraph>
       </ColumnsTitle>
       {children}
-      <StyledAddButton onClick={toggleAddWord} />
+      <StyledAddButton onClick={setAddingWordOnModal} />
     </div>
   );
 };

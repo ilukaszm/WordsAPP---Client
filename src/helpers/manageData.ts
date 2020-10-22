@@ -22,6 +22,11 @@ import {
   getUserProfileDataSuccess,
   getUserProfileDataFailure,
 } from 'data/slices/userProfileSlice';
+import {
+  getGameStatsData,
+  getGameStatsDataSuccess,
+  getGameStatsDataFailure,
+} from 'data/slices/gameStatsSlice';
 
 interface Data {
   word: string;
@@ -107,7 +112,7 @@ export const createProfileByIntegrate = async (user: any) => {
       avatarURL: profile.picture,
     };
 
-    const appDefaultValues = { gameSound: true, numberOfLevels: 5 };
+    const appDefaultValues = { gameSound: true, numberOfLevels: 5, gamePoints: 0 };
 
     try {
       await usersRef.doc(currentUser?.uid).set({ ...userDetails, ...appDefaultValues });
@@ -123,7 +128,7 @@ export const createProfileByEmailAndPassword = async (user: any) => {
     email,
     avatarURL,
   };
-  const appDefaultValues = { gameSound: true, numberOfLevels: 5 };
+  const appDefaultValues = { gameSound: true, numberOfLevels: 5, gamePoints: 0 };
 
   try {
     await usersRef.doc(userId).set({ ...userDetails, ...appDefaultValues });
@@ -138,7 +143,7 @@ type NewProfileData = {
   gamePoints?: number;
   numberOfLevels?: string;
 };
-export const updateUserProfile = async (userId: any, newData: NewProfileData) => {
+export const updateUserProfile = async (userId: string, newData: NewProfileData) => {
   const dataToUpdate = () => {
     if (newData.gamePoints) {
       return { gamePoints: firestore.FieldValue.increment(newData.gamePoints) };
@@ -161,5 +166,27 @@ export const getUserProfile = (userId: string) => async (dispatch: any) => {
     dispatch(getUserProfileDataSuccess(result.data()));
   } catch (error) {
     dispatch(getUserProfileDataFailure());
+  }
+};
+
+export const getGameStats = () => async (dispatch: any) => {
+  dispatch(getGameStatsData());
+  const tmp: any = [];
+
+  try {
+    const result = await usersRef.orderBy('gamePoints', 'desc').get();
+    if (result) {
+      result.forEach((doc) => {
+        tmp.push({
+          email: doc.data().email,
+          avatarURL: doc.data().avatarURL,
+          gamePoints: doc.data().gamePoints,
+        });
+      });
+    }
+
+    dispatch(getGameStatsDataSuccess(tmp));
+  } catch (error) {
+    dispatch(getGameStatsDataFailure());
   }
 };

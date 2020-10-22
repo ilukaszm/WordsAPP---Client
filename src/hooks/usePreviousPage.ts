@@ -5,7 +5,7 @@ export default () => {
   const { from }: any = location.state || { from: { pathname: '/' } };
   const history = useHistory();
 
-  const previousPage: any = () => history.replace(from);
+  const previousPage = () => history.replace(from);
 
   return previousPage;
 };

@@ -7,6 +7,11 @@ export const StyledButtonLink = styled.a`
   font-size: ${({ theme }) => theme.sizes.S};
   transition: all 0.3s;
 
+  > a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.primaryRed};
+  }
+
   :hover {
     color: ${({ theme }) => theme.colors.secondaryRed};
   }

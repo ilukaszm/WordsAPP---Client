@@ -10,8 +10,8 @@ import {
   StyledProgressBar,
   GameInfoWrapper,
   AnswerMessage,
-} from '../GamePageTemplate.styled';
-import GameInterface from './GameInterface';
+} from './Game.styled';
+import GameInterface from '../GameInterface';
 
 interface GameProps {
   buttonRef?: RefObject<HTMLButtonElement>;

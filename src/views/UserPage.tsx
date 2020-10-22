@@ -10,9 +10,10 @@ import { useAuthContext } from 'context/AuthContext';
 const WordsListPage = lazy(() => import('./WordsListPage'));
 const FlashcardsPage = lazy(() => import('./FlashcardsPage'));
 const GamePage = lazy(() => import('./GamePage'));
+const GameStatsPage = lazy(() => import('./GameStatsPage'));
 const ProfilePage = lazy(() => import('./ProfilePage'));
 
-type ViewType = 'wordsList' | 'flashcards' | 'game' | 'profile';
+type ViewType = 'wordsList' | 'flashcards' | 'game' | 'gameStats' | 'profile';
 
 const UserPage: FC = () => {
   const { pathname } = useLocation();
@@ -28,6 +29,9 @@ const UserPage: FC = () => {
         break;
       case routes.game:
         setViewType('game');
+        break;
+      case routes.gameStats:
+        setViewType('gameStats');
         break;
       case routes.profile:
         setViewType('profile');
@@ -49,6 +53,7 @@ const UserPage: FC = () => {
       {viewType === 'wordsList' && <WordsListPage />}
       {viewType === 'flashcards' && <FlashcardsPage />}
       {viewType === 'game' && <GamePage />}
+      {viewType === 'gameStats' && <GameStatsPage />}
       {viewType === 'profile' && <ProfilePage />}
     </UserPageTemplate>
   );

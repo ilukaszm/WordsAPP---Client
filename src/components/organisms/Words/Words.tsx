@@ -4,11 +4,11 @@ import { Word } from 'components';
 
 interface WordsProps {
   searchValue: string;
-  toggleEditingWord: (id: string) => void;
+  setEditingWordOnModal: (id: string) => void;
   words: any[];
 }
 
-const Words: FC<WordsProps> = ({ searchValue, toggleEditingWord, words }) => {
+const Words: FC<WordsProps> = ({ searchValue, setEditingWordOnModal, words }) => {
   return (
     <>
       {words
@@ -25,7 +25,7 @@ const Words: FC<WordsProps> = ({ searchValue, toggleEditingWord, words }) => {
               word={word}
               translation={translation}
               toRepeat={toRepeat}
-              toggleEditingWord={toggleEditingWord}
+              toggleEditingWord={setEditingWordOnModal}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Heading, Paragraph, ButtonLink, Button } from 'components';
+import { Paragraph, ButtonLink } from 'components';
 import keyboardIcon from 'assets/icons/keyboard.svg';
 import listIcon from 'assets/icons/list.svg';
 
@@ -15,55 +15,11 @@ export const StyledWrapper = styled.div`
   }
 `;
 
-export const StyledHeading = styled(Heading)`
-  margin-bottom: 24px;
-`;
-
-export const StyledImage = styled.img`
-  margin-bottom: 58px;
-  animation: rotate 0.8s ease;
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
 export const StyledParagraph = styled(Paragraph)`
   display: block;
   text-align: left;
   width: 100%;
   margin-bottom: 24px;
-`;
-
-export const StyledTextarea = styled.textarea`
-  resize: none;
-  padding: 20px;
-  width: 100%;
-  height: 150px;
-  border-radius: 30px;
-  background-color: ${({ theme }) => theme.colors.darkBlue};
-  font-size: ${({ theme }) => theme.sizes.M};
-  font-family: ${({ theme }) => theme.font};
-  font-weight: ${({ theme }) => theme.bolds.light};
-  color: white;
-  margin-bottom: 24px;
-
-  ::placeholder {
-    color: white;
-  }
-
-  :focus {
-    outline: 0;
-  }
-
-  ${({ theme: { devices } }) => devices.tablet} {
-    height: 300px;
-  }
 `;
 
 export const StyledButtonWrapper = styled.div`
@@ -135,33 +91,6 @@ export const AnswerMessage = styled(Paragraph)`
     from {
       opacity: 1;
     }
-  }
-`;
-
-export const StyledGameButtonsWrapper = styled.div`
-  height: 150px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto 24px;
-
-  ${({ theme: { devices } }) => devices.tablet} {
-    height: 300px;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-  }
-`;
-
-export const GameButton = styled(Button)`
-  margin-bottom: 16px;
-  margin-left: 5px;
-  width: 45%;
-
-  ${({ theme: { devices } }) => devices.tablet} {
-    width: 50%;
-    margin-left: 0;
   }
 `;
 

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { WordsListPageTemplate } from 'templates';
 import { Modal, Words } from 'components';
 import { Portal } from 'utils/Portal';
-import useWordListPage from 'hooks/useWordListPage';
+import useWordsListPage from 'hooks/useWordsListPage';
 import { selectWords, selectWordsLoading } from 'data/slices/wordsSlice';
 import Spinner from 'utils/Spinner';
 
@@ -16,22 +16,26 @@ const WordsListPage: FC = () => {
     searchValue,
     editedWord,
     isModalVisible,
-    toggleAddWord,
     toggleModal,
-    toggleEditingWord,
+    setAddingWordOnModal,
+    setEditingWordOnModal,
     handleChange,
-  } = useWordListPage();
+  } = useWordsListPage();
 
   return (
     <WordsListPageTemplate
       searchValue={searchValue}
       handleChangeFn={handleChange}
-      toggleAddWord={toggleAddWord}
+      setAddingWordOnModal={setAddingWordOnModal}
     >
       {wordsLoading ? (
         <Spinner />
       ) : (
-        <Words searchValue={searchValue} toggleEditingWord={toggleEditingWord} words={words} />
+        <Words
+          searchValue={searchValue}
+          setEditingWordOnModal={setEditingWordOnModal}
+          words={words}
+        />
       )}
       <Portal>
         <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />

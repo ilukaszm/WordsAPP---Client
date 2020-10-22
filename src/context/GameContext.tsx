@@ -12,6 +12,7 @@ import { getRandom, uniqueId } from 'utils/utils';
 
 interface Game {
   isGameLaunch: null | boolean;
+  isConfirmNumberOfWords: () => boolean;
   useWordsList: boolean;
   gamePoints: number;
   handleLaunchGame: () => void;
@@ -185,8 +186,21 @@ const GameProvider: FC = ({ children }) => {
     setUseWordsList((prevState) => !prevState);
   };
 
+  const isConfirmNumberOfWords = () => {
+    let output: boolean;
+
+    if (words.length > numberOfLevels) {
+      output = true;
+    } else {
+      output = false;
+    }
+
+    return output;
+  };
+
   const context = {
     isGameLaunch,
+    isConfirmNumberOfWords,
     gamePoints,
     handleLaunchGame,
     handleChangeAnswer,

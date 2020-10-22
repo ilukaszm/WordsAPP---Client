@@ -8,7 +8,7 @@ import {
   StyledNavBar,
 } from './UserPageTemplate.styled';
 
-type ViewType = 'wordsList' | 'flashcards' | 'game' | 'profile';
+type ViewType = 'wordsList' | 'flashcards' | 'game' | 'gameStats' | 'profile';
 
 interface UserPageTemplateProps {
   viewType: ViewType;
@@ -24,6 +24,7 @@ const UserPageTemplate: FC<UserPageTemplateProps> = ({ children, viewType }) => 
           {viewType === 'wordsList' && 'Your words'}
           {viewType === 'flashcards' && 'Flashcards'}
           {viewType === 'game' && 'Game'}
+          {viewType === 'gameStats' && 'Game Stats'}
           {viewType === 'profile' && 'Your profile'}
         </StyledHeading>
         {children}
