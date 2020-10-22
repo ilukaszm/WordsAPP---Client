@@ -5,7 +5,7 @@ interface GameStats {
 }
 
 interface Players {
-  email: string;
+  player: string;
   avatarURL: string;
   gamePoints: number;
 }

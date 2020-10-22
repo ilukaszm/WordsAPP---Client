@@ -1,35 +1,17 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
 
 import { Paragraph, Avatar } from 'components';
-
-const InnerWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
-
-const PlayersWrapper = styled.div`
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
-
-const Player = styled.div`
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-
-  > p {
-    margin-left: 16px;
-  }
-`;
-
-const StyledParagraph = styled(Paragraph)`
-  font-weight: ${({ theme }) => theme.bolds.bold};
-`;
+import {
+  InnerWrapper,
+  StyledParagraph,
+  PlayersWrapper,
+  Player,
+  Points,
+  Numbers,
+} from './GameStatsPageTemplate.styled';
 
 interface Players {
-  email: string;
+  player: string;
   avatarURL: string;
   gamePoints: number;
 }
@@ -45,15 +27,15 @@ const GameStatsPageTemplate: FC<GameStatsPageTemplateProps> = ({ gameStats }) =>
         <StyledParagraph>Points:</StyledParagraph>
       </InnerWrapper>
       <PlayersWrapper>
-        {gameStats.map(({ email, avatarURL, gamePoints }) => (
+        {gameStats.map(({ player, avatarURL, gamePoints }) => (
           <>
             <Player>
               <Avatar avatarURL={avatarURL} />
-              <Paragraph>{email}</Paragraph>
+              <Paragraph>{player}</Paragraph>
             </Player>
-            <Player>
-              <Paragraph>{gamePoints}</Paragraph>
-            </Player>
+            <Points>
+              <Numbers>{gamePoints}</Numbers>
+            </Points>
           </>
         ))}
       </PlayersWrapper>

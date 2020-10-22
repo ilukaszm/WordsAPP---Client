@@ -21,7 +21,14 @@ const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
 }) => {
   return (
     <div>
-      <StyledInput type="text" label="Search words" value={searchValue} onChange={handleChangeFn} />
+      <StyledInput
+        type="text"
+        label="Search word"
+        id="search"
+        name="search"
+        value={searchValue}
+        onChange={handleChangeFn}
+      />
       <ColumnsTitle>
         <StyledParagraph>word:</StyledParagraph>
         <StyledParagraph>translation:</StyledParagraph>

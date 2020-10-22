@@ -178,7 +178,7 @@ export const getGameStats = () => async (dispatch: any) => {
     if (result) {
       result.forEach((doc) => {
         tmp.push({
-          email: doc.data().email,
+          player: doc.data().email.substring(0, doc.data().email.lastIndexOf('@')),
           avatarURL: doc.data().avatarURL,
           gamePoints: doc.data().gamePoints,
         });
