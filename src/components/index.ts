@@ -11,6 +11,7 @@ export { default as Logo } from './atoms/Logo';
 export { default as PrivateRoute } from './atoms/PrivateRoute';
 export { default as Card } from './atoms/Card';
 export { default as Checkbox } from './atoms/Checkbox';
+export { default as InfoBar } from './atoms/InfoBar';
 
 export { default as NavBar } from './molecules/NavBar';
 export { default as AuthForm } from './molecules/AuthForm';

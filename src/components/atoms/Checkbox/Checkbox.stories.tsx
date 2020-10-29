@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react/types-6-0';
 import Checkbox from './Checkbox';
 
 export default {
-  title: 'Components/Atoms/Checkbox',
+  title: 'Atoms/Checkbox',
   component: Checkbox,
 } as Meta;
 

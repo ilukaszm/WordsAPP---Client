@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Button, Card, Paragraph } from 'components';
+import { Button, Card, InfoBar } from 'components';
 import { StyledWrapper, StyledButtonWrapper } from './FlashcardsPageTemplate.styled';
 
 interface FlashcardsPageTemplateProps {
@@ -17,13 +17,13 @@ const FlashcardsPageTemplate: FC<FlashcardsPageTemplateProps> = ({
   if (!word) {
     return (
       <StyledWrapper>
-        <Paragraph>You have to add some word to repeat to use flashcards.</Paragraph>
+        <InfoBar icon="error">You have to add some word to repeat to use flashcards.</InfoBar>
       </StyledWrapper>
     );
   }
   return (
     <StyledWrapper>
-      <Paragraph>Click on card to rotate</Paragraph>
+      Click on card to rotate.
       <Card textFirst={word} textSecond={translation} />
       <StyledButtonWrapper>
         <Button variant="secondary" onClick={() => changeActiveWordFn('previous')}>

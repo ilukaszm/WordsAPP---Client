@@ -1,7 +1,7 @@
 import React, { FC, RefObject } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, Paragraph } from 'components';
+import { Button, InfoBar } from 'components';
 import gameImage from 'assets/images/game.svg';
 import { useGameContext } from 'context/GameContext';
 import routes from 'routes';
@@ -27,13 +27,13 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
           </Button>
         </>
       ) : (
-        <Paragraph>
+        <InfoBar icon="error">
           You must have a number of words to repeat bigger than the number of levels setting by you.
           Add more words or change your settings to play.{' '}
           <span role="img" aria-label="emoji">
             🙄
           </span>
-        </Paragraph>
+        </InfoBar>
       )}
     </StyledWrapper>
   );

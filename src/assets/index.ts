@@ -15,3 +15,7 @@ export { ReactComponent as ListIcon } from './icons/list.svg';
 export { ReactComponent as FlashcardIcon } from './icons/flashcard.svg';
 export { ReactComponent as RepeatGameIcon } from './icons/brain.svg';
 export { ReactComponent as LogOutIcon } from './icons/logout.svg';
+
+export { ReactComponent as LoaderIcon } from './icons/loader.svg';
+export { ReactComponent as ErrorIcon } from './icons/error.svg';
+export { ReactComponent as SuccessIcon } from './icons/success.svg';
