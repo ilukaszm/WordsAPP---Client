@@ -44,8 +44,8 @@ const GameContext = createContext({});
 const GameProvider: FC = ({ children }) => {
   const { userId } = useAuthContext();
 
-  const gameSettings = useSelector(selectUserProfile);
-  const words = useSelector(selectWordsToRepeat);
+  const gameSettings = useSelector(selectUserProfile) || {};
+  const words = useSelector(selectWordsToRepeat) || [];
 
   const [isGameLaunch, setIsGameLaunch] = useState<null | boolean>(null);
   const [activeLevel, setActiveLevel] = useState(0);

@@ -50,3 +50,5 @@ export const {
 } = gameStatsSlice.actions;
 
 export const selectGameStats = (state: GameStats) => state.gameStats.gameStatsData;
+export const selectGameStatsLoading = (state: GameStats) => state.gameStats.loading;
+export const selectGameStatsErrors = (state: GameStats) => state.gameStats.hasErrors;

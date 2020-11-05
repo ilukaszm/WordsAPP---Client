@@ -5,12 +5,19 @@ import { WordsListPageTemplate } from 'templates';
 import { Modal, Words, InfoBar } from 'components';
 import { Portal } from 'utils/Portal';
 import useWordsListPage from 'hooks/useWordsListPage';
-import { selectWords, selectWordsLoading, selectWordsToRepeat } from 'data/slices/wordsSlice';
+import {
+  selectWords,
+  selectWordsLoading,
+  selectWordsToRepeat,
+  selectWordsErrors,
+} from 'data/slices/wordsSlice';
+import Spinner from 'utils/Spinner';
 
 const WordsListPage: FC = () => {
   const words = useSelector(selectWords);
   const wordsToRepeat = useSelector(selectWordsToRepeat);
   const wordsLoading = useSelector(selectWordsLoading);
+  const wordsErrors = useSelector(selectWordsErrors);
 
   const {
     searchValue,
@@ -29,7 +36,12 @@ const WordsListPage: FC = () => {
       setAddingWordOnModal={setAddingWordOnModal}
     >
       {words.length === 0 && (
-        <InfoBar icon="error">Add some words to use application features. 😉</InfoBar>
+        <InfoBar icon="error">
+          Add some words to use application features.{' '}
+          <span role="img" aria-label="emoji">
+            😉
+          </span>
+        </InfoBar>
       )}
       {words.length !== 0 && wordsToRepeat.length === 0 && (
         <InfoBar icon="error">
@@ -37,7 +49,7 @@ const WordsListPage: FC = () => {
         </InfoBar>
       )}
       {wordsLoading ? (
-        <InfoBar icon="loader">Loading words.</InfoBar>
+        <Spinner />
       ) : (
         <Words
           searchValue={searchValue}
@@ -45,6 +57,7 @@ const WordsListPage: FC = () => {
           words={words}
         />
       )}
+      {wordsErrors && <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>}
       <Portal>
         <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
       </Portal>

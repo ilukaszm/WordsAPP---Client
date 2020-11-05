@@ -52,3 +52,5 @@ export const {
 } = userProfileSlice.actions;
 
 export const selectUserProfile = (state: UserProfile) => state.userProfile.profileData;
+export const selectUserProfileLoading = (state: UserProfile) => state.userProfile.loading;
+export const selectUserProfileHasErrors = (state: UserProfile) => state.userProfile.hasErrors;

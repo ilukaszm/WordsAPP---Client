@@ -14,6 +14,7 @@ export const StyledWrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
   animation: infoBarAppear 0.3s ease-in-out;
+  z-index: 9999;
 
   @keyframes infoBarAppear {
     from {

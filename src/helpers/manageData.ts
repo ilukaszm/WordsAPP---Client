@@ -1,3 +1,4 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import { wordsRef, usersRef } from 'services/database';
 import { auth, firestore } from 'services/firebase';
 import {
@@ -28,15 +29,15 @@ import {
   getGameStatsDataFailure,
 } from 'data/slices/gameStatsSlice';
 
-interface Data {
+interface ItemData {
   word: string;
   translation: string;
   userId: string;
 }
 
-export const getItems = (userId: string) => async (dispatch: any) => {
+export const getItems = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(getWords());
-  const tmp: any = [];
+  const tmp: any[] = [];
 
   try {
     const result = await wordsRef.where('userId', '==', userId).get();
@@ -51,7 +52,7 @@ export const getItems = (userId: string) => async (dispatch: any) => {
   }
 };
 
-export const addItem = (newData: Data) => async (dispatch: any) => {
+export const addItem = (newData: ItemData) => async (dispatch: Dispatch) => {
   dispatch(addWord());
 
   const defaultValues = { toRepeat: false, createdAt: new Date() };
@@ -68,7 +69,7 @@ export const addItem = (newData: Data) => async (dispatch: any) => {
   }
 };
 
-export const removeItem = (id: string) => async (dispatch: any) => {
+export const removeItem = (id: string) => async (dispatch: Dispatch) => {
   dispatch(removeWord());
 
   try {
@@ -79,7 +80,7 @@ export const removeItem = (id: string) => async (dispatch: any) => {
   }
 };
 
-export const editItem = (id: string, editedData: any) => async (dispatch: any) => {
+export const editItem = (id: string, editedData: any) => async (dispatch: Dispatch) => {
   dispatch(editWord());
 
   try {
@@ -90,7 +91,7 @@ export const editItem = (id: string, editedData: any) => async (dispatch: any) =
   }
 };
 
-export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispatch: any) => {
+export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispatch: Dispatch) => {
   dispatch(changeWordStatus());
 
   try {
@@ -143,6 +144,7 @@ type NewProfileData = {
   gamePoints?: number;
   numberOfLevels?: string;
 };
+
 export const updateUserProfile = async (userId: string, newData: NewProfileData) => {
   const dataToUpdate = () => {
     if (newData.gamePoints) {
@@ -158,7 +160,7 @@ export const updateUserProfile = async (userId: string, newData: NewProfileData)
   }
 };
 
-export const getUserProfile = (userId: string) => async (dispatch: any) => {
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(getUserProfileData());
 
   try {
@@ -169,9 +171,9 @@ export const getUserProfile = (userId: string) => async (dispatch: any) => {
   }
 };
 
-export const getGameStats = () => async (dispatch: any) => {
+export const getGameStats = () => async (dispatch: Dispatch) => {
   dispatch(getGameStatsData());
-  const tmp: any = [];
+  const tmp: any[] = [];
 
   try {
     const result = await usersRef.orderBy('gamePoints', 'desc').get();

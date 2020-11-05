@@ -31,7 +31,6 @@ export default (toggleFn: () => void, editedWord?: EditedWord | null) => {
   });
   const onSubmit = (data: Inputs) => {
     const { word, translation } = data;
-
     if (!editedWord) {
       dispatch(addItem({ word, translation, userId }));
     } else {

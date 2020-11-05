@@ -19,7 +19,7 @@ interface GameStatsPageTemplateProps {
   gameStats: Players[];
 }
 
-const GameStatsPageTemplate: FC<GameStatsPageTemplateProps> = ({ gameStats }) => {
+const GameStatsPageTemplate: FC<GameStatsPageTemplateProps> = ({ gameStats, children }) => {
   return (
     <div>
       <InnerWrapper>
@@ -39,6 +39,7 @@ const GameStatsPageTemplate: FC<GameStatsPageTemplateProps> = ({ gameStats }) =>
           </>
         ))}
       </PlayersWrapper>
+      {children}
     </div>
   );
 };

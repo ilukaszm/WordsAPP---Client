@@ -14,7 +14,7 @@ interface NavBarProps {
 }
 
 const NavBar: FC<NavBarProps> = ({ className }) => {
-  const { avatarURL } = useSelector(selectUserProfile);
+  const { avatarURL } = useSelector(selectUserProfile) || '';
 
   return (
     <StyledNavBar className={className} data-testid="navbar">

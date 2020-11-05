@@ -32,6 +32,7 @@ const ProfilePage: FC<ProfilePageProps> = ({
   gameSound,
   numberOfLevels,
   avatarURL,
+  children,
 }) => {
   return (
     <StyledWrapper>
@@ -60,6 +61,8 @@ const ProfilePage: FC<ProfilePageProps> = ({
         <StyledInput
           type="text"
           label="Max numbers of level"
+          name="maxNumbersOfLevels"
+          id="maxNumbersOfLevels"
           defaultValue={numberOfLevels}
           onChange={handleChangeNumberOfLevels}
         />
@@ -67,6 +70,7 @@ const ProfilePage: FC<ProfilePageProps> = ({
       <StyledButtonWrapper>
         <Button onClick={handleChangeSettings}>Save settings</Button>
       </StyledButtonWrapper>
+      {children}
     </StyledWrapper>
   );
 };

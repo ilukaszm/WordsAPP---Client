@@ -23,7 +23,7 @@ const WordsListPageTemplate: FC<WordsListPageTemplateProps> = ({
     <div>
       <StyledInput
         type="text"
-        label="Search word"
+        label="Search words"
         id="search"
         name="search"
         value={searchValue}

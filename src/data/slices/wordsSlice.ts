@@ -132,3 +132,4 @@ export const selectWords = (state: Words): Word[] => state.words.allWords;
 export const selectWordsToRepeat = (state: Words): Word[] =>
   state.words.allWords.filter((word: Word) => word.toRepeat);
 export const selectWordsLoading = (state: Words) => state.words.loading;
+export const selectWordsErrors = (state: Words) => state.words.hasErrors;

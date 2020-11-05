@@ -2,11 +2,15 @@ import React, { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { FlashcardsPageTemplate } from 'templates';
-import { selectWordsToRepeat } from 'data/slices/wordsSlice';
+import { InfoBar } from 'components';
+import Spinner from 'utils/Spinner';
+import { selectWordsToRepeat, selectWordsLoading, selectWordsErrors } from 'data/slices/wordsSlice';
 
 const FlashcardsPage: FC = () => {
   const [activeWord, setActiveWord] = useState(0);
   const wordsToRepeat = useSelector(selectWordsToRepeat);
+  const wordsLoading = useSelector(selectWordsLoading);
+  const wordsErrors = useSelector(selectWordsErrors);
 
   const changeActiveWord = (type: 'next' | 'previous') => {
     if (type === 'next') {
@@ -29,7 +33,10 @@ const FlashcardsPage: FC = () => {
       word={wordsToRepeat[activeWord]?.word}
       translation={wordsToRepeat[activeWord]?.translation}
       changeActiveWordFn={changeActiveWord}
-    />
+    >
+      {wordsLoading && <Spinner />}
+      {wordsErrors && <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>}
+    </FlashcardsPageTemplate>
   );
 };
 

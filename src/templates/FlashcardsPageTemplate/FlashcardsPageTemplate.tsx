@@ -13,6 +13,7 @@ const FlashcardsPageTemplate: FC<FlashcardsPageTemplateProps> = ({
   word,
   translation,
   changeActiveWordFn,
+  children,
 }) => {
   if (!word) {
     return (
@@ -31,6 +32,7 @@ const FlashcardsPageTemplate: FC<FlashcardsPageTemplateProps> = ({
         </Button>
         <Button onClick={() => changeActiveWordFn('next')}>Next</Button>
       </StyledButtonWrapper>
+      {children}
     </StyledWrapper>
   );
 };

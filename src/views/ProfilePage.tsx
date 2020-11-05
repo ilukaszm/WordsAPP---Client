@@ -5,13 +5,21 @@ import { ProfilePageTemplate } from 'templates';
 import { useAuthContext } from 'context/AuthContext';
 import { storage } from 'services/firebase';
 import { updateUserProfile, getUserProfile } from 'helpers/manageData';
-import { selectUserProfile } from 'data/slices/userProfileSlice';
+import {
+  selectUserProfile,
+  selectUserProfileLoading,
+  selectUserProfileHasErrors,
+} from 'data/slices/userProfileSlice';
+import { InfoBar } from 'components';
+import Spinner from 'utils/Spinner';
 
 const ProfilePage: FC = () => {
   const dispatch = useDispatch();
   const { userId } = useAuthContext();
 
   const profileData = useSelector(selectUserProfile);
+  const profileDataLoading = useSelector(selectUserProfileLoading);
+  const profileDataErrors = useSelector(selectUserProfileHasErrors);
 
   const [imageAsFile, setImageAsFile] = useState<File>();
   const [imageAsUrl, setImageAsUrl] = useState('');
@@ -80,7 +88,12 @@ const ProfilePage: FC = () => {
       gameSound={gameSound}
       numberOfLevels={numberOfLevels}
       avatarURL={imageAsUrl}
-    />
+    >
+      {profileDataLoading && <Spinner />}
+      {profileDataErrors && (
+        <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+      )}
+    </ProfilePageTemplate>
   );
 };
 
