@@ -5,7 +5,7 @@ interface ProfileData {
   avatarURL: string;
   gameSound: boolean;
   gamePoints: number;
-  numberOfLevels: string;
+  numberOfLevels: number;
 }
 
 interface InitialState {
@@ -21,7 +21,7 @@ interface UserProfile {
 const initialState: InitialState = {
   loading: false,
   hasErrors: false,
-  profileData: { email: '', avatarURL: '', gameSound: true, numberOfLevels: '5', gamePoints: 0 },
+  profileData: { email: '', avatarURL: '', gameSound: true, numberOfLevels: 5, gamePoints: 0 },
 };
 
 const userProfileSlice = createSlice({

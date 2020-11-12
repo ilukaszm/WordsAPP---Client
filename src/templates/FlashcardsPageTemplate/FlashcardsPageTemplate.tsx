@@ -24,7 +24,7 @@ const FlashcardsPageTemplate: FC<FlashcardsPageTemplateProps> = ({
   }
   return (
     <StyledWrapper>
-      Click on card to rotate.
+      Click on the card to rotate.
       <Card textFirst={word} textSecond={translation} />
       <StyledButtonWrapper>
         <Button variant="secondary" onClick={() => changeActiveWordFn('previous')}>

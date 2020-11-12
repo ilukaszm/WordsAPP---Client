@@ -29,7 +29,7 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
       ) : (
         <InfoBar icon="error">
           You must have a number of words to repeat bigger than the number of levels setting by you.
-          Add more words or change your settings to play.{' '}
+          Add more words to repeat in the list or change your settings to play.{' '}
           <span role="img" aria-label="emoji">
             🙄
           </span>

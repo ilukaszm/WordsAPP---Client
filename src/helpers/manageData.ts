@@ -55,7 +55,7 @@ export const getItems = (userId: string) => async (dispatch: Dispatch) => {
 export const addItem = (newData: ItemData) => async (dispatch: Dispatch) => {
   dispatch(addWord());
 
-  const defaultValues = { toRepeat: false, createdAt: new Date() };
+  const defaultValues = { toRepeat: true, createdAt: new Date() };
   try {
     const result = await wordsRef.add({
       ...newData,
@@ -142,7 +142,7 @@ type NewProfileData = {
   avatarURL?: string;
   gameSound?: boolean;
   gamePoints?: number;
-  numberOfLevels?: string;
+  numberOfLevels?: number;
 };
 
 export const updateUserProfile = async (userId: string, newData: NewProfileData) => {

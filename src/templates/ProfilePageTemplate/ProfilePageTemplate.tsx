@@ -12,18 +12,18 @@ import {
   StyledFileInput,
 } from './ProfilePageTemplate.styled';
 
-interface ProfilePageProps {
+interface ProfilePageTemplateProps {
   handleImageAsFile: (e: ChangeEvent<HTMLInputElement>) => void;
   handleFireBaseUpload: (e: any) => void;
   handleChangeSettings: () => void;
   handleChangeNumberOfLevels: (e: ChangeEvent<HTMLInputElement>) => void;
   toggleGameSound: () => void;
   gameSound: boolean;
-  numberOfLevels: string;
+  numberOfLevels: number;
   avatarURL: string;
 }
 
-const ProfilePage: FC<ProfilePageProps> = ({
+const ProfilePageTemplate: FC<ProfilePageTemplateProps> = ({
   handleImageAsFile,
   handleFireBaseUpload,
   handleChangeSettings,
@@ -63,7 +63,7 @@ const ProfilePage: FC<ProfilePageProps> = ({
           label="Max numbers of level"
           name="maxNumbersOfLevels"
           id="maxNumbersOfLevels"
-          defaultValue={numberOfLevels}
+          defaultValue={numberOfLevels.toString()}
           onChange={handleChangeNumberOfLevels}
         />
       </div>
@@ -75,4 +75,4 @@ const ProfilePage: FC<ProfilePageProps> = ({
   );
 };
 
-export default ProfilePage;
+export default ProfilePageTemplate;

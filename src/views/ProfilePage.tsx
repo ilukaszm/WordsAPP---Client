@@ -24,17 +24,13 @@ const ProfilePage: FC = () => {
   const [imageAsFile, setImageAsFile] = useState<File>();
   const [imageAsUrl, setImageAsUrl] = useState('');
   const [gameSound, setgameSound] = useState(false);
-  const [numberOfLevels, setnumberOfLevels] = useState('10');
+  const [numberOfLevels, setnumberOfLevels] = useState(10);
 
   useEffect(() => {
     setImageAsUrl(profileData?.avatarURL);
     setgameSound(profileData?.gameSound);
     setnumberOfLevels(profileData?.numberOfLevels);
   }, [profileData, userId]);
-
-  useEffect(() => {
-    dispatch(getUserProfile(userId));
-  }, [userId, dispatch]);
 
   const handleImageAsFile = (e: ChangeEvent<HTMLInputElement>) => {
     const image = e.target?.files?.[0];
@@ -67,8 +63,11 @@ const ProfilePage: FC = () => {
     const avatarURL = imageAsUrl && imageAsUrl;
 
     const newData = { avatarURL, gameSound, numberOfLevels };
-    updateUserProfile(userId, newData);
-    dispatch(getUserProfile(userId));
+
+    if (numberOfLevels > 5) {
+      updateUserProfile(userId, newData);
+      dispatch(getUserProfile(userId));
+    }
   };
 
   const toggleGameSound = () => {
@@ -76,7 +75,7 @@ const ProfilePage: FC = () => {
   };
 
   const handleChangeNumberOfLevels = (e: ChangeEvent<HTMLInputElement>) => {
-    setnumberOfLevels(e.target.value);
+    setnumberOfLevels(Number(e.target.value));
   };
   return (
     <ProfilePageTemplate
@@ -92,6 +91,9 @@ const ProfilePage: FC = () => {
       {profileDataLoading && <Spinner />}
       {profileDataErrors && (
         <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+      )}
+      {Number(numberOfLevels) < 5 && (
+        <InfoBar icon="error">Numbers of level must be minimum: 5</InfoBar>
       )}
     </ProfilePageTemplate>
   );

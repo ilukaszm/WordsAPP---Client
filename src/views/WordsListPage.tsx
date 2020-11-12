@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FC, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { WordsListPageTemplate } from 'templates';
 import { Modal, Words, InfoBar } from 'components';
@@ -11,13 +11,24 @@ import {
   selectWordsToRepeat,
   selectWordsErrors,
 } from 'data/slices/wordsSlice';
+import { selectUserProfile } from 'data/slices/userProfileSlice';
 import Spinner from 'utils/Spinner';
+import { useAuthContext } from 'context/AuthContext';
+import { getUserProfile } from 'helpers/manageData';
 
 const WordsListPage: FC = () => {
+  const dispatch = useDispatch();
+  const { userId } = useAuthContext();
+
+  useEffect(() => {
+    dispatch(getUserProfile(userId));
+  }, [userId, dispatch]);
+
   const words = useSelector(selectWords);
   const wordsToRepeat = useSelector(selectWordsToRepeat);
   const wordsLoading = useSelector(selectWordsLoading);
   const wordsErrors = useSelector(selectWordsErrors);
+  const { numberOfLevels } = useSelector(selectUserProfile) || 0;
 
   const {
     searchValue,
@@ -35,19 +46,22 @@ const WordsListPage: FC = () => {
       handleChangeFn={handleChange}
       setAddingWordOnModal={setAddingWordOnModal}
     >
-      {words.length === 0 && (
+      {words.length < numberOfLevels + 1 && (
         <InfoBar icon="error">
-          Add some words to use application features.{' '}
+          Add words to use application features.{' '}
           <span role="img" aria-label="emoji">
             😉
-          </span>
+          </span>{' '}
+          {words.length}/{numberOfLevels + 1}
         </InfoBar>
       )}
       {words.length !== 0 && wordsToRepeat.length === 0 && (
         <InfoBar icon="error">
-          Uncheck the words you can&apos;t and you want to add to repeat. Click ✔ next to your word.
+          Uncheck the words which you don&apos;t know and you want to add to repeat. Click ✔ next to
+          your word.
         </InfoBar>
       )}
+
       {wordsLoading ? (
         <Spinner />
       ) : (
