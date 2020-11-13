@@ -1,7 +1,7 @@
 import React, { FC, RefObject } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, InfoBar } from 'components';
+import { Button, InfoBar, InfoBarWrapper } from 'components';
 import gameImage from 'assets/images/game.svg';
 import { useGameContext } from 'context/GameContext';
 import routes from 'routes';
@@ -27,13 +27,15 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
           </Button>
         </>
       ) : (
-        <InfoBar icon="error">
-          You must have a number of words to repeat bigger than the number of levels setting by you.
-          Add more words to repeat in the list or change your settings to play.{' '}
-          <span role="img" aria-label="emoji with face rolling eyes">
-            🙄
-          </span>
-        </InfoBar>
+        <InfoBarWrapper>
+          <InfoBar icon="error">
+            You must have a number of words to repeat bigger than the number of levels setting by
+            you. Add more words to repeat in the list or change your settings to play.{' '}
+            <span role="img" aria-label="emoji with face rolling eyes">
+              🙄
+            </span>
+          </InfoBar>
+        </InfoBarWrapper>
       )}
     </StyledWrapper>
   );

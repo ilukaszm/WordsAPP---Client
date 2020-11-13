@@ -17,5 +17,6 @@ export { default as NavBar } from './molecules/NavBar';
 export { default as AuthForm } from './molecules/AuthForm';
 export { default as Word } from './molecules/Word';
 export { default as Modal } from './molecules/Modal';
+export { default as InfoBarWrapper } from './molecules/InfoBarWrapper';
 
 export { default as Words } from './organisms/Words';

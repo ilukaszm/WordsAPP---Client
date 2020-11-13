@@ -10,7 +10,7 @@ import {
   selectUserProfileLoading,
   selectUserProfileHasErrors,
 } from 'data/slices/userProfileSlice';
-import { InfoBar } from 'components';
+import { InfoBar, InfoBarWrapper } from 'components';
 import Spinner from 'utils/Spinner';
 
 const ProfilePage: FC = () => {
@@ -89,12 +89,14 @@ const ProfilePage: FC = () => {
       avatarURL={imageAsUrl}
     >
       {profileDataLoading && <Spinner />}
-      {profileDataErrors && (
-        <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
-      )}
-      {Number(numberOfLevels) < 5 && (
-        <InfoBar icon="error">Numbers of level must be minimum: 5</InfoBar>
-      )}
+      <InfoBarWrapper>
+        {profileDataErrors && (
+          <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+        )}
+        {Number(numberOfLevels) < 5 && (
+          <InfoBar icon="error">Numbers of level must be minimum: 5</InfoBar>
+        )}
+      </InfoBarWrapper>
     </ProfilePageTemplate>
   );
 };

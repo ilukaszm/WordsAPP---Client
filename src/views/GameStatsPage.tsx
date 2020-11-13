@@ -8,7 +8,7 @@ import {
   selectGameStatsLoading,
   selectGameStatsErrors,
 } from 'data/slices/gameStatsSlice';
-import { InfoBar } from 'components';
+import { InfoBar, InfoBarWrapper } from 'components';
 import Spinner from 'utils/Spinner';
 
 const GameStatsPage: FC = () => {
@@ -26,7 +26,9 @@ const GameStatsPage: FC = () => {
     <GameStatsPageTemplate gameStats={gameStats}>
       {gameStatsLoading && <Spinner />}
       {gameStatsErrors && (
-        <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+        <InfoBarWrapper>
+          <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+        </InfoBarWrapper>
       )}
     </GameStatsPageTemplate>
   );

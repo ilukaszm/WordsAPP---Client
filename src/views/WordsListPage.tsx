@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { WordsListPageTemplate } from 'templates';
-import { Modal, Words, InfoBar } from 'components';
+import { Modal, Words, InfoBar, InfoBarWrapper } from 'components';
 import { Portal } from 'utils/Portal';
 import useWordsListPage from 'hooks/useWordsListPage';
 import {
@@ -46,22 +46,23 @@ const WordsListPage: FC = () => {
       handleChangeFn={handleChange}
       setAddingWordOnModal={setAddingWordOnModal}
     >
-      {words.length < numberOfLevels + 1 && (
-        <InfoBar icon="error">
-          Add words to use application&apos;s features.{' '}
-          <span role="img" aria-label="emoji with winking face">
-            😉
-          </span>{' '}
-          {words.length}/{numberOfLevels + 1}
-        </InfoBar>
-      )}
-      {wordsToRepeat.length === 0 && (
-        <InfoBar icon="error">
-          Uncheck the words which you don&apos;t know and you want to add to repeat. Click ✔ next to
-          your word.
-        </InfoBar>
-      )}
-
+      <InfoBarWrapper>
+        {words.length < numberOfLevels + 1 && (
+          <InfoBar icon="error">
+            Add words to use application&apos;s features.{' '}
+            <span role="img" aria-label="emoji with winking face">
+              😉
+            </span>{' '}
+            ({words.length}/{numberOfLevels + 1})
+          </InfoBar>
+        )}
+        {wordsToRepeat.length === 0 && (
+          <InfoBar icon="error">
+            Uncheck the words which you don&apos;t know and you want to add to repeat. (
+            {wordsToRepeat.length}/{numberOfLevels + 1}) Click ✔ next to your word.
+          </InfoBar>
+        )}
+      </InfoBarWrapper>
       {wordsLoading ? (
         <Spinner />
       ) : (

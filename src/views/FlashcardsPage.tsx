@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { FlashcardsPageTemplate } from 'templates';
-import { InfoBar } from 'components';
+import { InfoBar, InfoBarWrapper } from 'components';
 import Spinner from 'utils/Spinner';
 import { selectWordsToRepeat, selectWordsLoading, selectWordsErrors } from 'data/slices/wordsSlice';
 
@@ -35,7 +35,11 @@ const FlashcardsPage: FC = () => {
       changeActiveWordFn={changeActiveWord}
     >
       {wordsLoading && <Spinner />}
-      {wordsErrors && <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>}
+      {wordsErrors && (
+        <InfoBarWrapper>
+          <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
+        </InfoBarWrapper>
+      )}
     </FlashcardsPageTemplate>
   );
 };
