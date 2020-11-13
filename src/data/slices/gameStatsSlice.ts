@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface GameStats {
-  gameStats: InitialState;
-}
-
 interface Players {
   player: string;
   avatarURL: string;
@@ -21,6 +17,10 @@ const initialState: InitialState = {
   hasErrors: false,
   gameStatsData: [],
 };
+
+interface GlobalState {
+  gameStats: InitialState;
+}
 
 const gameStatsSlice = createSlice({
   name: 'gameStats',
@@ -49,6 +49,6 @@ export const {
   getGameStatsDataFailure,
 } = gameStatsSlice.actions;
 
-export const selectGameStats = (state: GameStats) => state.gameStats.gameStatsData;
-export const selectGameStatsLoading = (state: GameStats) => state.gameStats.loading;
-export const selectGameStatsErrors = (state: GameStats) => state.gameStats.hasErrors;
+export const selectGameStats = (state: GlobalState) => state.gameStats.gameStatsData;
+export const selectGameStatsLoading = (state: GlobalState) => state.gameStats.loading;
+export const selectGameStatsErrors = (state: GlobalState) => state.gameStats.hasErrors;

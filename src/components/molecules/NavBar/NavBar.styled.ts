@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Avatar } from 'components';
+
 export const StyledNavBar = styled.nav`
   position: sticky;
   top: 0;
@@ -19,7 +21,7 @@ export const StyledNavBar = styled.nav`
     justify-content: space-between;
     > div {
       display: flex;
-      margin: 0 30px auto;
+      margin: 0 auto;
       }
     }
   }
@@ -74,5 +76,11 @@ export const NavBarItem = styled.a`
   ${({ theme: { devices } }) => devices.tabletL} {
     margin: 0;
     margin-top: 20px;
+  }
+`;
+
+export const StyledAvatar = styled(Avatar)`
+  :hover {
+    opacity: 0.7;
   }
 `;

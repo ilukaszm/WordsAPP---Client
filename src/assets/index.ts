@@ -19,3 +19,5 @@ export { ReactComponent as LogOutIcon } from './icons/logout.svg';
 export { ReactComponent as LoaderIcon } from './icons/loader.svg';
 export { ReactComponent as ErrorIcon } from './icons/error.svg';
 export { ReactComponent as SuccessIcon } from './icons/success.svg';
+
+export { ReactComponent as SettingsIcon } from './icons/settings.svg';

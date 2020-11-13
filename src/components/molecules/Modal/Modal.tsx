@@ -18,19 +18,19 @@ interface EditedWord {
 }
 
 interface ModalProps {
-  visibility: boolean;
+  visible: boolean;
   toggleModal: () => void;
   editedWord?: EditedWord | null;
   closeEditingWord?: () => void;
 }
 
-const Modal: FC<ModalProps> = ({ visibility, toggleModal, editedWord }) => {
+const Modal: FC<ModalProps> = ({ visible, toggleModal, editedWord }) => {
   const { handleSubmit, onSubmit, register, errors } = useModal(toggleModal, editedWord);
 
   return (
     <>
-      <StyledShadow visibility={visibility} />
-      <StyledWrapper visibility={visibility}>
+      <StyledShadow visible={visible} />
+      <StyledWrapper visible={visible}>
         <CloseButton onClick={toggleModal} />
         <StyledHeading>{editedWord ? 'Edit word' : 'Add new word'}</StyledHeading>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>

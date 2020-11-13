@@ -16,7 +16,7 @@ const Logo: FC<LogoProps> = ({ className, variant }) => {
         <StyledLogoSmall
           className={className}
           src={LogoSmallImage}
-          alt="logo"
+          alt="logo wordsapp"
           data-testid="logo-small"
         />
       )}

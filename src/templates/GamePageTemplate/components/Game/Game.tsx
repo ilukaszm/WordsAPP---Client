@@ -51,10 +51,19 @@ const Game: FC<GameProps> = ({ buttonRef, textFieldRef }) => {
       {answerIsCorrect !== null ? (
         <AnswerMessage>
           {answerIsCorrect ? 'Good answer!' : 'Wrong answer! Correct answer:'}
-          {!answerIsCorrect && <b>{activeWordTranslation}</b>}
-          <span role="img" aria-label="emoji">
-            {answerIsCorrect ? '😃' : '🙁'}
-          </span>
+          {!answerIsCorrect && (
+            <b>{activeLevelVariant === 'wordToTranslate' ? activeWordTranslation : activeWord}</b>
+          )}
+
+          {answerIsCorrect ? (
+            <span role="img" aria-label="emoji with smiley face">
+              😃
+            </span>
+          ) : (
+            <span role="img" aria-label="emoji with sad face">
+              🙁
+            </span>
+          )}
         </AnswerMessage>
       ) : (
         <GameInterface textFieldRef={textFieldRef} />

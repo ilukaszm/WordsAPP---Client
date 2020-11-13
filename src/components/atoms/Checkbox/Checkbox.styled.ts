@@ -29,8 +29,9 @@ const StyledCheckbox = styled.div<{ errors?: boolean }>`
     &:after {
       content: '';
       position: absolute;
-      top: 0px;
-      left: -10px;
+      top: 13%;
+      left: 0;
+      transform: translate(-50%, 0);
       width: 19px;
       height: 19px;
       background-image: url(${checkedIcon});

@@ -1,5 +1,6 @@
 import React, { FC, createContext, useContext, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { User } from 'firebase/app';
 
 import { auth } from 'services/firebase';
 import { getUserProfile } from 'helpers/manageData';
@@ -11,21 +12,21 @@ interface CurrentUser {
 const AuthContext = createContext({ userId: '' });
 
 export const AuthProvider: FC = ({ children }) => {
-  const authUser = JSON.parse(localStorage.getItem('authUser') as any) as string;
-  const [currentUser, setCurrentUser] = useState({ userId: authUser });
+  const authUser = JSON.parse(localStorage.getItem('authUserId') as string);
+  const [currentUser, setCurrentUser] = useState({ userId: authUser || null });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const setUser = (user: any) => {
+    const setUser = (user: User | null) => {
       if (user) {
         const { uid: userId } = user;
         dispatch(getUserProfile(userId));
         setCurrentUser({ userId });
 
-        localStorage.setItem('authUser', JSON.stringify(userId));
+        localStorage.setItem('authUserId', JSON.stringify(userId));
       } else {
-        localStorage.removeItem('authUser');
+        localStorage.removeItem('authUserId');
       }
     };
     const unsubsribe = auth().onAuthStateChanged(setUser);

@@ -30,6 +30,9 @@ const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
 
   :focus {
     outline: none;
+    background-color: ${({ theme, variant }) => variant === 'primary' && theme.colors.secondaryRed};
+    color: ${({ theme, variant }) => variant === 'secondary' && theme.colors.secondaryRed};
+    border-color: ${({ theme, variant }) => variant === 'secondary' && theme.colors.secondaryRed};
   }
 `;
 

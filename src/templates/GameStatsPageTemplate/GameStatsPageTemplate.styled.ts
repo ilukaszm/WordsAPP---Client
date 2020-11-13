@@ -11,7 +11,7 @@ export const InnerWrapper = styled.div`
   }
 `;
 
-export const PlayersWrapper = styled.div`
+export const PlayerWrapper = styled.div`
   margin-top: 24px;
   display: grid;
   grid-template-columns: 0.75fr 0.25fr;

@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 
-import { AvatarNoneIcon } from 'assets';
+import { AvatarNoneIcon, SettingsIcon } from 'assets';
 import { AvatarProps } from './Avatar.model';
 import { StyledAvatar, StyledAvatarImage } from './Avatar.styled';
 
-const Avatar: FC<AvatarProps> = ({ avatarURL }) => {
+const Avatar: FC<AvatarProps> = ({ avatarURL, className }) => {
   return (
-    <StyledAvatar data-testid="avatar">
+    <StyledAvatar className={className} data-testid="avatar">
       {avatarURL ? <StyledAvatarImage avatarURL={avatarURL} /> : <AvatarNoneIcon />}
+      <SettingsIcon />
     </StyledAvatar>
   );
 };

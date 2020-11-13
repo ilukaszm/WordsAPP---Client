@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Heading } from 'components';
 import closeIcon from 'assets/icons/close.svg';
 
-export const StyledShadow = styled.div<{ visibility: boolean }>`
-  display: ${({ visibility }) => (visibility ? 'block' : 'none')};
+export const StyledShadow = styled.div<{ visible: boolean }>`
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@ export const StyledShadow = styled.div<{ visibility: boolean }>`
   }
 `;
 
-export const StyledWrapper = styled.div<{ visibility: boolean }>`
+export const StyledWrapper = styled.div<{ visible: boolean }>`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -25,7 +25,7 @@ export const StyledWrapper = styled.div<{ visibility: boolean }>`
   padding: 10px;
   width: 95vw;
   height: 330px;
-  display: ${({ visibility }) => (visibility ? 'flex' : 'none')};
+  display: ${({ visible }) => (visible ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   border-radius: 20px;

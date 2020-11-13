@@ -1,4 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
+
 import { wordsRef, usersRef } from 'services/database';
 import { auth, firestore } from 'services/firebase';
 import {
@@ -29,12 +30,6 @@ import {
   getGameStatsDataFailure,
 } from 'data/slices/gameStatsSlice';
 
-interface ItemData {
-  word: string;
-  translation: string;
-  userId: string;
-}
-
 export const getItems = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(getWords());
   const tmp: any[] = [];
@@ -43,7 +38,7 @@ export const getItems = (userId: string) => async (dispatch: Dispatch) => {
     const result = await wordsRef.where('userId', '==', userId).get();
     if (result) {
       result.forEach((doc) => {
-        tmp.push({ id: doc.id, ...doc.data() });
+        tmp.push({ id: doc.id, ...doc.data(), createdAt: doc.data().createdAt.toString() });
       });
     }
     dispatch(getWordsSuccess(tmp));
@@ -52,7 +47,9 @@ export const getItems = (userId: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const addItem = (newData: ItemData) => async (dispatch: Dispatch) => {
+export const addItem = (newData: { word: string; translation: string; userId: string }) => async (
+  dispatch: Dispatch,
+) => {
   dispatch(addWord());
 
   const defaultValues = { toRepeat: true, createdAt: new Date() };
@@ -80,7 +77,9 @@ export const removeItem = (id: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const editItem = (id: string, editedData: any) => async (dispatch: Dispatch) => {
+export const editItem = (id: string, editedData: { word?: string; translation?: string }) => async (
+  dispatch: Dispatch,
+) => {
   dispatch(editWord());
 
   try {
@@ -103,14 +102,14 @@ export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispat
 };
 
 export const createProfileByIntegrate = async (user: any) => {
-  const currentUser: any = await auth().currentUser;
+  const currentUser = await auth().currentUser;
   const checkUser = await usersRef.doc(currentUser?.uid).get();
 
   if (!checkUser.exists) {
-    const { profile } = user?.additionalUserInfo;
+    const profile = user.additionalUserInfo?.profile;
     const userDetails = {
-      email: profile.email,
-      avatarURL: profile.picture,
+      email: profile?.email,
+      avatarURL: profile?.picture,
     };
 
     const appDefaultValues = { gameSound: true, numberOfLevels: 5, gamePoints: 0 };
@@ -173,7 +172,9 @@ export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => 
 
 export const getGameStats = () => async (dispatch: Dispatch) => {
   dispatch(getGameStatsData());
-  const tmp: any[] = [];
+
+  type Player = { player: string; avatarURL: string; gamePoints: number };
+  const tmp: Player[] = [];
 
   try {
     const result = await usersRef.orderBy('gamePoints', 'desc').get();

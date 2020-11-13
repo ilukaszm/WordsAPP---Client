@@ -19,8 +19,8 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
       {isConfirmNumberOfWords() ? (
         <>
           <StyledImage src={gameImage} alt="game" />
-          <StyledButtonLink>
-            <Link to={routes.gameStats}>Game stats</Link>
+          <StyledButtonLink to={routes.gameStats} as={Link}>
+            Game stats
           </StyledButtonLink>
           <Button onClick={handleLaunchGame} buttonRef={buttonRef}>
             Play
@@ -30,7 +30,7 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
         <InfoBar icon="error">
           You must have a number of words to repeat bigger than the number of levels setting by you.
           Add more words to repeat in the list or change your settings to play.{' '}
-          <span role="img" aria-label="emoji">
+          <span role="img" aria-label="emoji with face rolling eyes">
             🙄
           </span>
         </InfoBar>

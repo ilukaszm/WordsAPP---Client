@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { LoaderIcon, ErrorIcon, SuccessIcon } from 'assets';
+import { LoaderIcon, ErrorIcon, SettingsIcon } from 'assets';
 import { StyledWrapper, StyledParagraph } from './InfoBar.styled';
 
 interface InfoBarProps {
@@ -12,7 +12,7 @@ const InfoBar: FC<InfoBarProps> = ({ children, icon }) => {
     <StyledWrapper>
       {icon === 'loader' && <LoaderIcon />}
       {icon === 'error' && <ErrorIcon />}
-      {icon === 'success' && <SuccessIcon />}
+      {icon === 'success' && <SettingsIcon />}
       <StyledParagraph>{children}</StyledParagraph>
     </StyledWrapper>
   );

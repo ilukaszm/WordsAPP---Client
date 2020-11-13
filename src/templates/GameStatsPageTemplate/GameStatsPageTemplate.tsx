@@ -4,7 +4,7 @@ import { Paragraph, Avatar } from 'components';
 import {
   InnerWrapper,
   StyledParagraph,
-  PlayersWrapper,
+  PlayerWrapper,
   Player,
   Points,
   Numbers,
@@ -26,19 +26,17 @@ const GameStatsPageTemplate: FC<GameStatsPageTemplateProps> = ({ gameStats, chil
         <StyledParagraph>Top players:</StyledParagraph>
         <StyledParagraph>Points:</StyledParagraph>
       </InnerWrapper>
-      <PlayersWrapper>
-        {gameStats.map(({ player, avatarURL, gamePoints }) => (
-          <>
-            <Player>
-              <Avatar avatarURL={avatarURL} />
-              <Paragraph>{player}</Paragraph>
-            </Player>
-            <Points>
-              <Numbers>{gamePoints}</Numbers>
-            </Points>
-          </>
-        ))}
-      </PlayersWrapper>
+      {gameStats.map(({ player, avatarURL, gamePoints }) => (
+        <PlayerWrapper key={player}>
+          <Player>
+            <Avatar avatarURL={avatarURL} />
+            <Paragraph>{player}</Paragraph>
+          </Player>
+          <Points>
+            <Numbers>{gamePoints}</Numbers>
+          </Points>
+        </PlayerWrapper>
+      ))}
       {children}
     </div>
   );

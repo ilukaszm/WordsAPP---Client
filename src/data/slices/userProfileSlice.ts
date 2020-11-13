@@ -14,7 +14,7 @@ interface InitialState {
   profileData: ProfileData;
 }
 
-interface UserProfile {
+interface GlobalState {
   userProfile: InitialState;
 }
 
@@ -51,6 +51,6 @@ export const {
   getUserProfileDataFailure,
 } = userProfileSlice.actions;
 
-export const selectUserProfile = (state: UserProfile) => state.userProfile.profileData;
-export const selectUserProfileLoading = (state: UserProfile) => state.userProfile.loading;
-export const selectUserProfileHasErrors = (state: UserProfile) => state.userProfile.hasErrors;
+export const selectUserProfile = (state: GlobalState) => state.userProfile.profileData;
+export const selectUserProfileLoading = (state: GlobalState) => state.userProfile.loading;
+export const selectUserProfileHasErrors = (state: GlobalState) => state.userProfile.hasErrors;

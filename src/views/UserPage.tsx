@@ -42,7 +42,7 @@ const UserPage: FC = () => {
   }, [pathname]);
 
   const dispatch = useDispatch();
-  const { userId }: any = useAuthContext();
+  const { userId } = useAuthContext();
 
   useEffect(() => {
     dispatch(getItems(userId));

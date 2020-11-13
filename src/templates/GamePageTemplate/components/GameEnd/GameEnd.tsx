@@ -17,12 +17,12 @@ const GameEnd: FC<GameEndProps> = ({ buttonRef }) => {
     <StyledWrapper>
       <StyledHeading>
         You are better!
-        <span role="img" aria-label="emoji">
+        <span role="img" aria-label="emoji with smilet face">
           😊
         </span>
       </StyledHeading>
-      <StyledButtonLink>
-        <Link to={routes.gameStats}>Game stats</Link>
+      <StyledButtonLink as={Link} to={routes.gameStats}>
+        Game stats
       </StyledButtonLink>
       <Button onClick={handleLaunchGame} buttonRef={buttonRef}>
         Play again

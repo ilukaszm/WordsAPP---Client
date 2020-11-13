@@ -48,14 +48,14 @@ const WordsListPage: FC = () => {
     >
       {words.length < numberOfLevels + 1 && (
         <InfoBar icon="error">
-          Add words to use application features.{' '}
-          <span role="img" aria-label="emoji">
+          Add words to use application&apos;s features.{' '}
+          <span role="img" aria-label="emoji with winking face">
             😉
           </span>{' '}
           {words.length}/{numberOfLevels + 1}
         </InfoBar>
       )}
-      {words.length !== 0 && wordsToRepeat.length === 0 && (
+      {wordsToRepeat.length === 0 && (
         <InfoBar icon="error">
           Uncheck the words which you don&apos;t know and you want to add to repeat. Click ✔ next to
           your word.
@@ -73,7 +73,7 @@ const WordsListPage: FC = () => {
       )}
       {wordsErrors && <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>}
       <Portal>
-        <Modal visibility={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
+        <Modal visible={isModalVisible} toggleModal={toggleModal} editedWord={editedWord} />
       </Portal>
     </WordsListPageTemplate>
   );

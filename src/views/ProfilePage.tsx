@@ -64,7 +64,7 @@ const ProfilePage: FC = () => {
 
     const newData = { avatarURL, gameSound, numberOfLevels };
 
-    if (numberOfLevels > 5) {
+    if (numberOfLevels >= 5) {
       updateUserProfile(userId, newData);
       dispatch(getUserProfile(userId));
     }
