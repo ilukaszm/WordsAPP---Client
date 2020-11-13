@@ -1,37 +1,49 @@
 import React, { FC, ChangeEvent } from 'react';
 
-import { Button, Avatar, Paragraph } from 'components';
+import { Button, Avatar, Paragraph, Input } from 'components';
 import {
   StyledWrapper,
   StyledCheckbox,
   StyledHeading,
   InnerWrapper,
   StyledButtonWrapper,
-  StyledInput,
   StyledUploadButton,
   StyledFileInput,
+  StyledParagraph,
 } from './ProfilePageTemplate.styled';
 
 interface ProfilePageTemplateProps {
   handleImageAsFile: (e: ChangeEvent<HTMLInputElement>) => void;
   handleFireBaseUpload: (e: any) => void;
+  handleChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   handleChangeSettings: () => void;
   handleChangeNumberOfLevels: (e: ChangeEvent<HTMLInputElement>) => void;
   toggleGameSound: () => void;
+  currentEmail: string;
   gameSound: boolean;
-  numberOfLevels: number;
+  numberOfLevels: string;
+  currentNumberOfLevels: number;
   avatarURL: string;
+  password: string;
+  email: string;
 }
 
 const ProfilePageTemplate: FC<ProfilePageTemplateProps> = ({
   handleImageAsFile,
   handleFireBaseUpload,
+  handleChangePassword,
+  handleChangeEmail,
   handleChangeSettings,
   handleChangeNumberOfLevels,
   toggleGameSound,
+  currentEmail,
   gameSound,
   numberOfLevels,
+  currentNumberOfLevels,
   avatarURL,
+  password,
+  email,
   children,
 }) => {
   return (
@@ -49,7 +61,7 @@ const ProfilePageTemplate: FC<ProfilePageTemplateProps> = ({
           <StyledUploadButton type="submit">Upload</StyledUploadButton>
         </form>
       </InnerWrapper>
-      <div>
+      <InnerWrapper>
         <StyledHeading>Game settings:</StyledHeading>
         <StyledCheckbox
           label="Game sound"
@@ -58,15 +70,43 @@ const ProfilePageTemplate: FC<ProfilePageTemplateProps> = ({
           checked={gameSound}
           onChange={toggleGameSound}
         />
-        <StyledInput
+        <StyledParagraph>
+          Number of levels: <b>{currentNumberOfLevels}</b>
+        </StyledParagraph>
+        <Input
           type="text"
-          label="Max numbers of level"
+          label="Change numbers of levels"
           name="maxNumbersOfLevels"
           id="maxNumbersOfLevels"
-          defaultValue={numberOfLevels.toString()}
+          value={numberOfLevels}
           onChange={handleChangeNumberOfLevels}
         />
-      </div>
+      </InnerWrapper>
+      <InnerWrapper>
+        <StyledHeading>Password settings:</StyledHeading>
+        <Input
+          type="password"
+          label="New password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={handleChangePassword}
+        />
+      </InnerWrapper>
+      <InnerWrapper>
+        <StyledHeading>Email settings:</StyledHeading>
+        <StyledParagraph>
+          Current email address: <b>{currentEmail}</b>
+        </StyledParagraph>
+        <Input
+          type="email"
+          label="New email address"
+          name="email"
+          id="email"
+          value={email}
+          onChange={handleChangeEmail}
+        />
+      </InnerWrapper>
       <StyledButtonWrapper>
         <Button onClick={handleChangeSettings}>Save settings</Button>
       </StyledButtonWrapper>

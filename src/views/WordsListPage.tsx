@@ -56,7 +56,7 @@ const WordsListPage: FC = () => {
             ({words.length}/{numberOfLevels + 1})
           </InfoBar>
         )}
-        {wordsToRepeat.length === 0 && (
+        {wordsToRepeat.length < numberOfLevels + 1 && (
           <InfoBar icon="error">
             Uncheck the words which you don&apos;t know and you want to add to repeat. (
             {wordsToRepeat.length}/{numberOfLevels + 1}) Click ✔ next to your word.

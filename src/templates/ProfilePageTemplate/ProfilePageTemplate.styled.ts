@@ -1,15 +1,26 @@
 import styled from 'styled-components';
 
-import { Checkbox, Heading, Input, Button } from 'components';
+import { Checkbox, Heading, Input, Button, Paragraph } from 'components';
 
 export const StyledWrapper = styled.div`
   display: flex;
   width: 90vw;
   flex-wrap: wrap;
+  justify-content: center;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    margin-top: 25px;
+  }
 `;
 
 export const InnerWrapper = styled.div`
   margin-bottom: 24px;
+  width: 90%;
+
+  ${({ theme: { devices } }) => devices.tablet} {
+    width: 45%;
+    padding: 0 16px;
+  }
 `;
 
 export const StyledButtonWrapper = styled.div`
@@ -24,7 +35,7 @@ export const StyledHeading = styled(Heading)`
 `;
 
 export const StyledCheckbox = styled(Checkbox)`
-  margin-bottom: 36px;
+  margin-bottom: 12px;
 `;
 
 export const StyledInput = styled(Input)`
@@ -36,4 +47,8 @@ export const StyledUploadButton = styled(Button)`
 `;
 export const StyledFileInput = styled.input`
   margin-top: 24px;
+`;
+
+export const StyledParagraph = styled(Paragraph)`
+  margin-bottom: 24px;
 `;
