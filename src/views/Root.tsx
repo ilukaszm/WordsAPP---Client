@@ -11,6 +11,7 @@ import Spinner from 'utils/Spinner';
 
 const LoginPage = lazy(() => import('views/LoginPage'));
 const UserPage = lazy(() => import('views/UserPage'));
+const ResetPasswordPage = lazy(() => import('views/ResetPasswordPage'));
 
 const Root = () => {
   return (
@@ -23,7 +24,8 @@ const Root = () => {
               <PrivateRoute exact path={routes.home}>
                 <Redirect to={routes.wordsList} />
               </PrivateRoute>
-              <Route path={routes.login} component={LoginPage} />
+              <Route exact path={routes.login} component={LoginPage} />
+              <Route path={routes.resetPassowrd} component={ResetPasswordPage} />
               <PrivateRoute path={routes.wordsList} component={UserPage} />
               <PrivateRoute path={routes.flashcards} component={UserPage} />
               <PrivateRoute path={routes.game} component={UserPage} />

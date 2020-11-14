@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Input, Button } from 'components';
 import useAuthForm from 'hooks/useAuthForm';
-import { StyledForm, StyledError } from './AuthForm.styled';
+import routes from 'routes';
+import { StyledForm, StyledError, StyledButtonLink } from './AuthForm.styled';
 
 interface AuthFormProps {
   className?: string;
@@ -43,6 +45,11 @@ const AuthForm: FC<AuthFormProps> = ({ className, viewType }) => {
           />
         )}
         <Button type="submit">{viewType === 'register' ? 'Sign Up' : 'Sign In'}</Button>
+        {viewType === 'login' && (
+          <StyledButtonLink to={routes.resetPassowrd} as={Link}>
+            I forgot my password
+          </StyledButtonLink>
+        )}
       </StyledForm>
     </>
   );

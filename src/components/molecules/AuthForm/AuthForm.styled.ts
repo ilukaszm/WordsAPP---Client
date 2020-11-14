@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Paragraph } from 'components';
+
+import { Paragraph, ButtonLink } from 'components';
 
 export const StyledForm = styled.form`
   padding: 20px;
@@ -30,4 +31,10 @@ export const StyledError = styled(Paragraph)`
       opacity: 1;
     }
   }
+`;
+
+export const StyledButtonLink = styled(ButtonLink)`
+  margin-top: 8px;
+  color: ${({ theme }) => theme.colors.primaryRed};
+  text-decoration: none;
 `;

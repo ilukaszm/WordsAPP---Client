@@ -19,4 +19,6 @@ export const StyledHeading = styled(Heading)`
 
 export const StyledButtonLink = styled(ButtonLink)`
   margin-bottom: 16px;
+  color: ${({ theme }) => theme.colors.primaryRed};
+  text-decoration: none;
 `;

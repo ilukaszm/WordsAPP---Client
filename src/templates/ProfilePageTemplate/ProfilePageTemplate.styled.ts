@@ -7,6 +7,8 @@ export const StyledWrapper = styled.div`
   width: 90vw;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 1024px;
+  margin: 0 0 auto;
 
   ${({ theme: { devices } }) => devices.tablet} {
     margin-top: 25px;

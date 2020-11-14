@@ -1,6 +1,7 @@
 export default {
   home: '/',
   login: '/login',
+  resetPassowrd: '/login/reset',
   wordsList: '/list',
   flashcards: '/flashcards',
   game: '/game',

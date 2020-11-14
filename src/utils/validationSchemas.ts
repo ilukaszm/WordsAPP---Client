@@ -15,3 +15,7 @@ export const word = yup.object().shape({
   word: yup.string().required(),
   translation: yup.string().required(),
 });
+
+export const email = yup.object().shape({
+  email: yup.string().required(),
+});
