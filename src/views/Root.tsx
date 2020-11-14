@@ -12,6 +12,7 @@ import Spinner from 'utils/Spinner';
 const LoginPage = lazy(() => import('views/LoginPage'));
 const UserPage = lazy(() => import('views/UserPage'));
 const ResetPasswordPage = lazy(() => import('views/ResetPasswordPage'));
+const ErrorPage = lazy(() => import('views/ErrorPage'));
 
 const Root = () => {
   return (
@@ -31,6 +32,7 @@ const Root = () => {
               <PrivateRoute path={routes.game} component={UserPage} />
               <PrivateRoute path={routes.gameStats} component={UserPage} />
               <PrivateRoute path={routes.profile} component={UserPage} />
+              <Route path={routes.error404} component={ErrorPage} />
             </Switch>
           </Suspense>
         </Router>

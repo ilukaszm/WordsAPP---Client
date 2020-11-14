@@ -7,4 +7,5 @@ export default {
   game: '/game',
   gameStats: '/game_stats',
   profile: '/profile',
+  error404: '*',
 };

@@ -6,3 +6,4 @@ export { default as GamePageTemplate } from './GamePageTemplate';
 export { default as GameStatsPageTemplate } from './GameStatsPageTemplate';
 export { default as ProfilePageTemplate } from './ProfilePageTemplate';
 export { default as ResetPasswordPageTemplate } from './ResetPasswordPageTemplate';
+export { default as ErrorPageTemplate } from './ErrorPageTemplate';
