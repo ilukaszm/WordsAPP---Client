@@ -1,44 +1,92 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WordsAPP
 
-## Available Scripts
+<p align="center">
+<img src="https://i.imgur.com/DOCBw0C.png">
+</p>
 
-In the project directory, you can run:
+## Application in user's eyes 🧑
 
-### `yarn start`
+WordsAPP is simple application to remembering foreign words. The application has two functionality which will help you in teaching new words. We have here **flashcards** and **game**.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Flashcards ⬜
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<p align="center">
+<img src="https://media.giphy.com/media/om3TOfpH4vXYT02NIU/giphy.gif">
+</p>
 
-### `yarn test`
+### Game 🎮
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can guess translations of your words which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
 
-### `yarn build`
+<p align="center">
+<img src="https://media.giphy.com/media/pVdWZQkU3MY9RTMp0Q/giphy.gif">
+</p>
+<p align="center">
+<img src="https://media.giphy.com/media/FE5CdPdUZ1CPbB6tz5/giphy.gif">
+</p>
+You can compete with your friends as well, because the game has points stats.
+<p align="center">
+<img src="https://i.imgur.com/Pnl3Mr7.jpg">
+</p>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Words List 📘
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**WordsList** is your personal list of your words. Here you can:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Add new words,
+- Edit words,
+- Add chosen words to repeat in flashcards and game.
+<p align="center">
+<img src="https://i.imgur.com/rpbpcq3.jpg">
+</p>
 
-### `yarn eject`
+### Profile settings 🔧
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Here you can change your password, email, avatar and game preferences.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="center">
+<img src="https://i.imgur.com/UxuhDOS.jpg">
+</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Application in programmer's eyes 👨‍💻
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**WordsAPP** is a simple application wrote in **React** and **TypeScript** which communicate with services of **Firebase** like **Authentication**, **Cloud Firestore** and **Storage**.
 
-## Learn More
+### Technology stack:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Technology            | Description                               |
+| --------------------- | ----------------------------------------- |
+| React                 | Library for building user interfaces      |
+| Typescript            | Javascript superset language              |
+| Redux Toolkit         | Library to manage global state of React   |
+| React Router Dom      | Declarative Routing for React             |
+| Styled Components     | Visual primitives for the component age   |
+| Storybook             | Development environment for UI components |
+| React Hook Form       | Library to creating forms                 |
+| Yup                   | Library to fields validation              |
+| React Testing Library | Testing Library for React                 |
+| Husky                 | Pre\-commit tool                          |
+| Lint\-staged          | Pre\-commit tool                          |
+| Eslint                | JavaScript Linter                         |
+| Prettier              | Code formatter                            |
+| Firabase              | Serveless services from Google            |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Install 💾
+
+To use the application you have to account on **Firebase** with created project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
+
+> npm start
+
+In order to build application you can use commend:
+
+> npm run build
+
+## Demo
+
+https://words-app.vercel.app/
+
+## License 📝
+
+Under license (MIT, Apache etc)
+
+MIT © [Łukasz Michalak](https://github.com/ilukaszm)
