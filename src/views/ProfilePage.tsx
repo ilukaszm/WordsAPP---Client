@@ -34,6 +34,7 @@ const ProfilePage: FC = () => {
   useEffect(() => {
     setImageAsUrl(profileData?.avatarURL);
     setgameSound(profileData?.gameSound);
+    setNumberOfLevels(profileData.numberOfLevels.toString());
   }, [profileData, userId]);
 
   const handleImageAsFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -77,9 +78,8 @@ const ProfilePage: FC = () => {
     const avatarURL = imageAsUrl && imageAsUrl;
     const newData = { avatarURL, gameSound, numberOfLevels: Number(numberOfLevels) };
 
-    if (Number(numberOfLevels) >= 5) {
-      updateUserProfile(userId, newData);
-    }
+    if (Number(numberOfLevels) >= 5 || numberOfLevels === '') updateUserProfile(userId, newData);
+
     if (password !== '') {
       const updateUserPassword = async () => {
         try {
@@ -90,7 +90,6 @@ const ProfilePage: FC = () => {
           setServerErrorPassword(error.message);
         }
       };
-
       updateUserPassword();
     }
     if (email !== '') {
@@ -102,7 +101,6 @@ const ProfilePage: FC = () => {
           setServerErrorEmail(error.message);
         }
       };
-
       updateUserEmail();
     }
 

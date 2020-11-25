@@ -30,6 +30,15 @@ import {
   getGameStatsDataFailure,
 } from 'data/slices/gameStatsSlice';
 
+type NewProfileData = {
+  avatarURL?: string;
+  gameSound?: boolean;
+  gamePoints?: number;
+  numberOfLevels?: number;
+};
+
+type Player = { player: string; avatarURL: string; gamePoints: number };
+
 export const getItems = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(getWords());
   const tmp: any[] = [];
@@ -101,16 +110,22 @@ export const changeItemStatus = (id: string, toRepeat: boolean) => async (dispat
   }
 };
 
-export const createProfileByIntegrate = async (user: any) => {
+export const createProfileByIntegrate = async (user: any, platform: 'google' | 'facebook') => {
   const currentUser = await auth().currentUser;
   const checkUser = await usersRef.doc(currentUser?.uid).get();
 
   if (!checkUser.exists) {
     const profile = user.additionalUserInfo?.profile;
-    const userDetails = {
-      email: profile?.email,
-      avatarURL: profile?.picture,
-    };
+    const userDetails: { email: string; avatarURL: string } = { email: '', avatarURL: '' };
+
+    if (platform === 'google') {
+      userDetails.email = profile?.email;
+      userDetails.avatarURL = profile?.picture;
+    }
+    if (platform === 'facebook') {
+      userDetails.email = profile?.email;
+      userDetails.avatarURL = profile?.picture?.data?.url;
+    }
 
     const appDefaultValues = { gameSound: true, numberOfLevels: 5, gamePoints: 0 };
 
@@ -135,13 +150,6 @@ export const createProfileByEmailAndPassword = async (user: any) => {
   } catch (error) {
     throw new Error(error);
   }
-};
-
-type NewProfileData = {
-  avatarURL?: string;
-  gameSound?: boolean;
-  gamePoints?: number;
-  numberOfLevels?: number;
 };
 
 export const updateUserProfile = async (userId: string, newData: NewProfileData) => {
@@ -173,7 +181,6 @@ export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => 
 export const getGameStats = () => async (dispatch: Dispatch) => {
   dispatch(getGameStatsData());
 
-  type Player = { player: string; avatarURL: string; gamePoints: number };
   const tmp: Player[] = [];
 
   try {

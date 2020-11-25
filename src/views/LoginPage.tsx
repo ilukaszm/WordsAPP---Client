@@ -8,6 +8,7 @@ import { createProfileByIntegrate } from 'helpers/manageData';
 
 const LoginPage: FC = () => {
   const [viewType, setViewType] = useState<'login' | 'register'>('login');
+  const [integrateError, setIntegrateError] = useState('');
   const previousPage = usePreviousPage();
 
   const handleChange = () => {
@@ -19,22 +20,33 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <LoginPageTemplate viewType={viewType} handlerFn={handleChange}>
+    <LoginPageTemplate viewType={viewType} handlerFn={handleChange} integrateError={integrateError}>
       <SocialButton
         variant="google"
         onClick={async () => {
-          const user = await googleAuth();
-          if (user) {
-            await createProfileByIntegrate(user);
+          try {
+            const user = await googleAuth();
+            if (user) {
+              await createProfileByIntegrate(user, 'google');
+            }
+            previousPage();
+          } catch (error) {
+            setIntegrateError(error.message);
           }
-          previousPage();
         }}
       />
       <SocialButton
         variant="facebook"
         onClick={async () => {
-          await fbAuth();
-          previousPage();
+          try {
+            const user = await fbAuth();
+            if (user) {
+              await createProfileByIntegrate(user, 'facebook');
+            }
+            previousPage();
+          } catch (error) {
+            setIntegrateError(error.message);
+          }
         }}
       />
     </LoginPageTemplate>
