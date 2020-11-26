@@ -68,16 +68,16 @@ Here you can change your password, email, avatar and game preferences.
 | Husky                 | Pre\-commit tool                          |
 | Lint\-staged          | Pre\-commit tool                          |
 | Eslint                | JavaScript Linter                         |
-| Prettier              | Code formatter                            |
+| Prettier              | Code formatter                            |`
 | Firabase              | Serveless services from Google            |
 
 ## Install 💾
 
-To use the application you have to account on **Firebase** with created project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
+To use the application you have to have an account on **Firebase** with created project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
 
 > npm start
 
-In order to build application you can use commend:
+In order to build the application you can use command:
 
 > npm run build
 
