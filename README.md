@@ -6,7 +6,7 @@
 
 ## Application in user's eyes 🧑
 
-WordsAPP is simple application to remembering foreign words. The application has two functionality which will help you in teaching new words. We have here **flashcards** and **game**.
+WordsAPP is simple application to remembering foreign words. The application has two functionality, which will help you in teaching new words. We have here **flashcards** and **game**.
 
 ### Flashcards ⬜
 
@@ -16,7 +16,7 @@ WordsAPP is simple application to remembering foreign words. The application has
 
 ### Game 🎮
 
-You can guess translations of your words which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
+You can guess translations of your words, which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
 
 <p align="center">
 <img src="https://media.giphy.com/media/pVdWZQkU3MY9RTMp0Q/giphy.gif">
@@ -73,11 +73,11 @@ Here you can change your password, email, avatar and game preferences.
 
 ## Install 💾
 
-To use the application you have to have an account on **Firebase** with created project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
+To use the application, you have to have an account on **Firebase** with created project. When you already have an account and project, you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it, you can start the project with command:
 
 > npm start
 
-In order to build the application you can use command:
+In order to build the application, you can use command:
 
 > npm run build
 
