@@ -6,7 +6,7 @@
 
 ## Application in user's eyes 🧑
 
-WordsAPP is simple application to remembering foreign words. The application has two functionality which will help you in teaching new words. We have here **flashcards** and **game**.
+WordsAPP is a simple application to remember foreign words. The application has two functionality which will help you in teaching new words. We have here **flashcards** and **game**.
 
 ### Flashcards ⬜
 
@@ -16,7 +16,8 @@ WordsAPP is simple application to remembering foreign words. The application has
 
 ### Game 🎮
 
-You can guess translations of your words which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
+You can guess translations of your words,
+which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
 
 <p align="center">
 <img src="https://media.giphy.com/media/pVdWZQkU3MY9RTMp0Q/giphy.gif">
@@ -24,7 +25,7 @@ You can guess translations of your words which you added to repeat from your wor
 <p align="center">
 <img src="https://media.giphy.com/media/FE5CdPdUZ1CPbB6tz5/giphy.gif">
 </p>
-You can compete with your friends as well, because the game has points stats.
+You can compete with your friends as well, because the game has stats with the best players.
 <p align="center">
 <img src="https://i.imgur.com/Pnl3Mr7.jpg">
 </p>
@@ -50,7 +51,7 @@ Here you can change your password, email, avatar and game preferences.
 
 ## Application in programmer's eyes 👨‍💻
 
-**WordsAPP** is a simple application wrote in **React** and **TypeScript** which communicate with services of **Firebase** like **Authentication**, **Cloud Firestore** and **Storage**.
+**WordsAPP** is a simple application wrote in **React** and **TypeScript**, that communicate with services of **Firebase** like **Authentication**, **Cloud Firestore** and **Storage**. The Application store her global states in **Redux** and uses **Redux Toolkit** for simpler development and better readability code.
 
 ### Technology stack:
 
@@ -73,11 +74,11 @@ Here you can change your password, email, avatar and game preferences.
 
 ## Install 💾
 
-To use the application you have to account on **Firebase** with created project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
+To use the application you have to an account on **Firebase** with created a project. When you already have an account and project you must copy your firebase config with api key to **.env** file in **src** directory. When you have done it you can start the project with command:
 
 > npm start
 
-In order to build application you can use commend:
+In order to build application you can use command:
 
 > npm run build
 

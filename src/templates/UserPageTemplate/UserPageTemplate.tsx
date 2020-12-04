@@ -24,7 +24,7 @@ const UserPageTemplate: FC<UserPageTemplateProps> = ({ children, viewType }) => 
           {viewType === 'wordsList' && 'Your words'}
           {viewType === 'flashcards' && 'Flashcards'}
           {viewType === 'game' && 'Game'}
-          {viewType === 'gameStats' && 'Game Stats'}
+          {viewType === 'gameStats' && 'Game stats'}
           {viewType === 'profile' && 'Your profile'}
         </StyledHeading>
         {children}

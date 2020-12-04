@@ -49,7 +49,7 @@ const WordsListPage: FC = () => {
       <InfoBarWrapper>
         {words.length < numberOfLevels + 1 && (
           <InfoBar icon="error">
-            Add words to use application&apos;s features.{' '}
+            Add words to use features of the application.{' '}
             <span role="img" aria-label="emoji with winking face">
               😉
             </span>{' '}
@@ -58,8 +58,12 @@ const WordsListPage: FC = () => {
         )}
         {wordsToRepeat.length < numberOfLevels + 1 && (
           <InfoBar icon="error">
-            Uncheck the words which you don&apos;t know and you want to add to repeat. (
-            {wordsToRepeat.length}/{numberOfLevels + 1}) Click ✔ next to your word.
+            Uncheck the words, which you don&apos;t know and you want to add to repeat. Click ✔ next
+            to your word. Words to repeat have an icon:{' '}
+            <span role="img" aria-label="emoji with repeat icon">
+              🔁.
+            </span>
+            ({wordsToRepeat.length}/{numberOfLevels + 1})
           </InfoBar>
         )}
       </InfoBarWrapper>

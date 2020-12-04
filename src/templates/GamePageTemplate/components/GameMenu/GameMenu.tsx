@@ -30,7 +30,7 @@ const GameMenu: FC<GameMenuProps> = ({ buttonRef }) => {
         <InfoBarWrapper>
           <InfoBar icon="error">
             You must have a number of words to repeat bigger than the number of levels setting by
-            you. Add more words to repeat in the list or change your settings to play.{' '}
+            you. Add more words to repeat in the list or change your settings to play a game.{' '}
             <span role="img" aria-label="emoji with face rolling eyes">
               🙄
             </span>

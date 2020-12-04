@@ -75,9 +75,9 @@ const ProfilePageTemplate: FC<ProfilePageTemplateProps> = ({
         </StyledParagraph>
         <Input
           type="text"
-          label="Change numbers of levels"
-          name="maxNumbersOfLevels"
-          id="maxNumbersOfLevels"
+          label="Change number of levels"
+          name="maxNumberOfLevels"
+          id="maxNumberOfLevels"
           value={numberOfLevels}
           onChange={handleChangeNumberOfLevels}
         />

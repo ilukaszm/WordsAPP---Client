@@ -145,7 +145,7 @@ const ProfilePage: FC = () => {
           <InfoBar icon="error">Oops! Something went wrong. Try again later.</InfoBar>
         )}
         {numberOfLevels !== '' && Number(numberOfLevels) < 5 && (
-          <InfoBar icon="error">Numbers of level must be minimum: 5</InfoBar>
+          <InfoBar icon="error">Number of levels must be of minimum: 5</InfoBar>
         )}
         {serverErrorPassword && <InfoBar icon="error">{serverErrorPassword}</InfoBar>}
         {serverErrorEmail && <InfoBar icon="error">{serverErrorEmail}</InfoBar>}
