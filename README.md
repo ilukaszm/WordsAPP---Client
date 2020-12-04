@@ -17,7 +17,7 @@ WordsAPP is a simple application to remember foreign words. The application has 
 ### Game 🎮
 
 You can guess translations of your words,
-which you added to repeat from your word's list. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
+which you added to repeat from your list of words. The game has two modes: typing by keyboard like on the first picture and using words list like on the second picture.
 
 <p align="center">
 <img src="https://media.giphy.com/media/pVdWZQkU3MY9RTMp0Q/giphy.gif">
@@ -69,7 +69,7 @@ Here you can change your password, email, avatar and game preferences.
 | Husky                 | Pre\-commit tool                          |
 | Lint\-staged          | Pre\-commit tool                          |
 | Eslint                | JavaScript Linter                         |
-| Prettier              | Code formatter                            |
+| Prettier              | Code formatter                            | ` |
 | Firabase              | Serveless services from Google            |
 
 ## Install 💾
